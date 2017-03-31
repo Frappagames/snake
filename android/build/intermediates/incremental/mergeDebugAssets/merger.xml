@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/home/gfp/Documents/PERSO/projets/snake/snake/android/assets"><file name="badlogic.jpg" path="/home/gfp/Documents/PERSO/projets/snake/snake/android/assets/badlogic.jpg"/></source></dataSet><dataSet config="debug"><source path="/home/gfp/Documents/PERSO/projets/snake/snake/android/src/debug/assets"/></dataSet></merger>

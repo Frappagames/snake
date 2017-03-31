@@ -1,0 +1,19 @@
+
+snake.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+apple
+  rotate: false
+  xy: 1, 8
+  size: 5, 5
+  orig: 5, 5
+  offset: 0, 0
+  index: -1
+snakePart
+  rotate: false
+  xy: 1, 1
+  size: 5, 5
+  orig: 5, 5
+  offset: 0, 0
+  index: -1
