@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class SnakeBody {
     private static final int START_LENGHT = 5;
     private ArrayList<SnakePart> parts = new ArrayList<SnakePart>();
+    private boolean asTurned = false;
 
     public SnakeBody(SnakePart.Direction direction, int x, int y) {
 
@@ -32,22 +33,17 @@ public class SnakeBody {
     }
 
     public void turn(SnakePart.Direction direction) {
-        SnakePart firstPart = parts.get(0);
+        if (!this.asTurned) {
+            SnakePart firstPart = parts.get(0);
 
-        if (direction == SnakePart.Direction.LEFT && firstPart.getDirection() != SnakePart.Direction.RIGHT) {
-            firstPart.setDirection(direction);
-        }
-
-        if (direction == SnakePart.Direction.RIGHT && firstPart.getDirection() != SnakePart.Direction.LEFT) {
-            firstPart.setDirection(direction);
-        }
-
-        if (direction == SnakePart.Direction.TOP && firstPart.getDirection() != SnakePart.Direction.DOWN) {
-            firstPart.setDirection(direction);
-        }
-
-        if (direction == SnakePart.Direction.DOWN && firstPart.getDirection() != SnakePart.Direction.TOP) {
-            firstPart.setDirection(direction);
+            if ((direction == SnakePart.Direction.LEFT && firstPart.getDirection() != SnakePart.Direction.RIGHT)
+                || (direction == SnakePart.Direction.RIGHT && firstPart.getDirection() != SnakePart.Direction.LEFT)
+                || (direction == SnakePart.Direction.TOP && firstPart.getDirection() != SnakePart.Direction.DOWN)
+                || (direction == SnakePart.Direction.DOWN && firstPart.getDirection() != SnakePart.Direction.TOP)
+            ) {
+                firstPart.setDirection(direction);
+                this.asTurned = true;
+            }
         }
     }
 
@@ -61,6 +57,8 @@ public class SnakeBody {
             part.setDirection(direction);
             direction = nextDirection;
         }
+
+        this.asTurned = false;
     }
 
     public void draw(Batch batch) {
