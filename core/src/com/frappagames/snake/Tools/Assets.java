@@ -13,7 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 public class Assets {
     private static TextureAtlas itemsAtlas;
 
-    public static TextureRegion snakePart, apple;
+    public static TextureRegion snakePart, apple, snakeHead, snakeTail;
 //    public static Animation standAnimation, walkAnimation, jumpAnimation;
 //
 //    public static Sound clickSound;
@@ -26,6 +26,8 @@ public class Assets {
         itemsAtlas = new TextureAtlas(Gdx.files.internal("snake.pack"));
 
         snakePart  = new TextureRegion(itemsAtlas.findRegion("snakePart"));
+        snakeHead  = new TextureRegion(itemsAtlas.findRegion("snakeHead"));
+        snakeTail  = new TextureRegion(itemsAtlas.findRegion("snakeTail"));
         apple      = new TextureRegion(itemsAtlas.findRegion("apple"));
 
 //        // Load Music and sounds
