@@ -1,6 +1,10 @@
 [
     {
-        "merged": "/home/gfp/Documents/PERSO/projets/snake/snake/android/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4/ic_launcher.png",
-        "source": "/home/gfp/Documents/PERSO/projets/snake/snake/android/res/drawable-xxxhdpi/ic_launcher.png"
+        "merged": "F:\\home\\gfp\\Documents\\PERSO\\projets\\snake\\snake\\android\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4\\ic_launcher.png",
+        "source": "F:\\home\\gfp\\Documents\\PERSO\\projets\\snake\\snake\\android\\res\\drawable-xxxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "F:\\Programmation\\Jeux\\0-en_cours\\Snake\\snake\\android\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4\\ic_launcher.png",
+        "source": "F:\\Programmation\\Jeux\\0-en_cours\\Snake\\snake\\android\\res\\drawable-xxxhdpi\\ic_launcher.png"
     }
 ]
