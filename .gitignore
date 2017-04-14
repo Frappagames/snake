@@ -3,6 +3,7 @@
 .DS_Store
 .log
 build/
+war/
 
 ## Android Studio and Intellij and Android in general
 android/libs/
