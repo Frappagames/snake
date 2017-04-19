@@ -17,416 +17,423 @@ pageBackground
   orig: 128, 72
   offset: 0, 0
   index: -1
-imgAbout1
+imgAbout4
   rotate: false
-  xy: 1, 9
-  size: 108, 44
-  orig: 108, 44
-  offset: 0, 0
-  index: -1
-imgAbout2
-  rotate: false
-  xy: 261, 83
-  size: 108, 44
-  orig: 108, 44
+  xy: 1, 4
+  size: 122, 49
+  orig: 122, 49
   offset: 0, 0
   index: -1
 imgAbout3
   rotate: false
-  xy: 111, 9
+  xy: 261, 78
+  size: 122, 49
+  orig: 122, 49
+  offset: 0, 0
+  index: -1
+imgAbout2
+  rotate: false
+  xy: 125, 9
   size: 108, 44
   orig: 108, 44
   offset: 0, 0
   index: -1
-imgAbout4
+imgAbout5
   rotate: false
-  xy: 371, 83
+  xy: 385, 83
   size: 108, 44
   orig: 108, 44
   offset: 0, 0
   index: -1
-imgTips1
+imgAbout1
   rotate: false
-  xy: 481, 86
-  size: 108, 41
-  orig: 108, 41
+  xy: 495, 83
+  size: 108, 44
+  orig: 108, 44
   offset: 0, 0
   index: -1
-imgTips2
+imgTips6
   rotate: false
-  xy: 591, 86
+  xy: 605, 86
   size: 108, 41
   orig: 108, 41
   offset: 0, 0
   index: -1
 imgTips3
   rotate: false
-  xy: 701, 86
+  xy: 715, 86
   size: 108, 41
   orig: 108, 41
   offset: 0, 0
   index: -1
-imgTips4
+imgTips2
   rotate: false
-  xy: 811, 86
+  xy: 825, 86
+  size: 108, 41
+  orig: 108, 41
+  offset: 0, 0
+  index: -1
+imgTips1
+  rotate: false
+  xy: 261, 35
   size: 108, 41
   orig: 108, 41
   offset: 0, 0
   index: -1
 imgTips5
   rotate: false
-  xy: 261, 40
+  xy: 385, 40
   size: 108, 41
   orig: 108, 41
   offset: 0, 0
   index: -1
-imgTips6
+imgTips4
   rotate: false
-  xy: 371, 40
+  xy: 495, 40
   size: 108, 41
   orig: 108, 41
   offset: 0, 0
   index: -1
 imgMenu
   rotate: false
-  xy: 481, 24
+  xy: 605, 24
   size: 60, 60
   orig: 60, 60
   offset: 0, 0
   index: -1
 titleDifficulty
   rotate: false
-  xy: 921, 117
+  xy: 935, 117
   size: 80, 10
   orig: 80, 10
   offset: 0, 0
   index: -1
 titleGameOver
   rotate: false
-  xy: 543, 74
+  xy: 667, 74
   size: 72, 10
   orig: 72, 10
   offset: 0, 0
   index: -1
 btnBack
   rotate: false
-  xy: 921, 106
-  size: 60, 9
-  orig: 60, 9
-  offset: 0, 0
-  index: -1
-btnBackOver
-  rotate: false
-  xy: 543, 63
+  xy: 935, 106
   size: 60, 9
   orig: 60, 9
   offset: 0, 0
   index: -1
 btnRetry
   rotate: false
-  xy: 617, 75
+  xy: 667, 63
   size: 60, 9
   orig: 60, 9
   offset: 0, 0
   index: -1
 btnRetryOver
   rotate: false
-  xy: 921, 95
+  xy: 741, 75
   size: 60, 9
   orig: 60, 9
   offset: 0, 0
   index: -1
-btnAbout
+btnBackOver
   rotate: false
-  xy: 543, 52
-  size: 59, 9
-  orig: 59, 9
+  xy: 935, 95
+  size: 60, 9
+  orig: 60, 9
   offset: 0, 0
   index: -1
-btnAboutOver
+btnScoresOver
   rotate: false
-  xy: 679, 75
-  size: 59, 9
-  orig: 59, 9
-  offset: 0, 0
-  index: -1
-btnExit
-  rotate: false
-  xy: 543, 41
+  xy: 667, 52
   size: 59, 9
   orig: 59, 9
   offset: 0, 0
   index: -1
 btnExitOver
   rotate: false
-  xy: 740, 75
+  xy: 803, 75
   size: 59, 9
   orig: 59, 9
   offset: 0, 0
   index: -1
-btnHelp
+btnAbout
   rotate: false
-  xy: 543, 30
-  size: 59, 9
-  orig: 59, 9
-  offset: 0, 0
-  index: -1
-btnHelpOver
-  rotate: false
-  xy: 801, 75
-  size: 59, 9
-  orig: 59, 9
-  offset: 0, 0
-  index: -1
-btnOptions
-  rotate: false
-  xy: 921, 84
-  size: 59, 9
-  orig: 59, 9
-  offset: 0, 0
-  index: -1
-titleOptions
-  rotate: false
-  xy: 862, 74
-  size: 56, 10
-  orig: 56, 10
-  offset: 0, 0
-  index: -1
-btnOptionsOver
-  rotate: false
-  xy: 920, 73
-  size: 59, 9
-  orig: 59, 9
-  offset: 0, 0
-  index: -1
-btnScores
-  rotate: false
-  xy: 543, 19
-  size: 59, 9
-  orig: 59, 9
-  offset: 0, 0
-  index: -1
-btnScoresOver
-  rotate: false
-  xy: 617, 64
-  size: 59, 9
-  orig: 59, 9
-  offset: 0, 0
-  index: -1
-btnStart
-  rotate: false
-  xy: 678, 64
+  xy: 667, 41
   size: 59, 9
   orig: 59, 9
   offset: 0, 0
   index: -1
 btnStartOver
   rotate: false
-  xy: 739, 64
+  xy: 864, 75
   size: 59, 9
   orig: 59, 9
   offset: 0, 0
   index: -1
+btnStart
+  rotate: false
+  xy: 667, 30
+  size: 59, 9
+  orig: 59, 9
+  offset: 0, 0
+  index: -1
+btnOptionsOver
+  rotate: false
+  xy: 935, 84
+  size: 59, 9
+  orig: 59, 9
+  offset: 0, 0
+  index: -1
+btnOptions
+  rotate: false
+  xy: 667, 19
+  size: 59, 9
+  orig: 59, 9
+  offset: 0, 0
+  index: -1
+btnAboutOver
+  rotate: false
+  xy: 741, 64
+  size: 59, 9
+  orig: 59, 9
+  offset: 0, 0
+  index: -1
+btnScores
+  rotate: false
+  xy: 802, 64
+  size: 59, 9
+  orig: 59, 9
+  offset: 0, 0
+  index: -1
+btnHelp
+  rotate: false
+  xy: 863, 64
+  size: 59, 9
+  orig: 59, 9
+  offset: 0, 0
+  index: -1
+btnHelpOver
+  rotate: false
+  xy: 925, 73
+  size: 59, 9
+  orig: 59, 9
+  offset: 0, 0
+  index: -1
+btnExit
+  rotate: false
+  xy: 924, 62
+  size: 59, 9
+  orig: 59, 9
+  offset: 0, 0
+  index: -1
+titleOptions
+  rotate: false
+  xy: 371, 28
+  size: 56, 10
+  orig: 56, 10
+  offset: 0, 0
+  index: -1
 titleScores
   rotate: false
-  xy: 800, 63
+  xy: 429, 28
   size: 48, 10
   orig: 48, 10
   offset: 0, 0
   index: -1
-titleHelp
+imgMapLvl5
   rotate: false
-  xy: 221, 42
-  size: 32, 11
-  orig: 32, 11
-  offset: 0, 0
-  index: -1
-btnInGameMenu
-  rotate: false
-  xy: 221, 31
-  size: 33, 9
-  orig: 33, 9
-  offset: 0, 0
-  index: -1
-imgMapLvl1
-  rotate: false
-  xy: 221, 7
-  size: 44, 22
-  orig: 44, 22
-  offset: 0, 0
-  index: -1
-imgMapLvl2
-  rotate: false
-  xy: 267, 16
-  size: 44, 22
-  orig: 44, 22
-  offset: 0, 0
-  index: -1
-imgMapLvl3
-  rotate: false
-  xy: 313, 16
+  xy: 479, 16
   size: 44, 22
   orig: 44, 22
   offset: 0, 0
   index: -1
 imgMapLvl4
   rotate: false
-  xy: 359, 16
+  xy: 525, 16
   size: 44, 22
   orig: 44, 22
   offset: 0, 0
   index: -1
-imgMapLvl5
+titleHelp
   rotate: false
-  xy: 405, 16
+  xy: 571, 27
+  size: 32, 11
+  orig: 32, 11
+  offset: 0, 0
+  index: -1
+imgMapLvl6
+  rotate: false
+  xy: 235, 11
   size: 44, 22
   orig: 44, 22
   offset: 0, 0
   index: -1
 imgSpeed1
   rotate: false
-  xy: 267, 6
+  xy: 235, 1
+  size: 44, 8
+  orig: 44, 8
+  offset: 0, 0
+  index: -1
+imgMapLvl1
+  rotate: false
+  xy: 281, 11
+  size: 44, 22
+  orig: 44, 22
+  offset: 0, 0
+  index: -1
+imgSpeed5
+  rotate: false
+  xy: 281, 1
+  size: 44, 8
+  orig: 44, 8
+  offset: 0, 0
+  index: -1
+titleAbout
+  rotate: false
+  xy: 327, 23
+  size: 40, 10
+  orig: 40, 10
+  offset: 0, 0
+  index: -1
+imgSpeed3
+  rotate: false
+  xy: 327, 13
   size: 44, 8
   orig: 44, 8
   offset: 0, 0
   index: -1
 imgSpeed2
   rotate: false
-  xy: 313, 6
+  xy: 327, 3
   size: 44, 8
   orig: 44, 8
   offset: 0, 0
   index: -1
-imgSpeed3
+imgMapLvl3
   rotate: false
-  xy: 359, 6
-  size: 44, 8
-  orig: 44, 8
-  offset: 0, 0
-  index: -1
-imgSpeed4
-  rotate: false
-  xy: 405, 6
-  size: 44, 8
-  orig: 44, 8
-  offset: 0, 0
-  index: -1
-imgMapLvl6
-  rotate: false
-  xy: 850, 50
+  xy: 373, 4
   size: 44, 22
   orig: 44, 22
   offset: 0, 0
   index: -1
 imgMapLvl7
   rotate: false
-  xy: 896, 49
+  xy: 419, 4
   size: 44, 22
   orig: 44, 22
   offset: 0, 0
   index: -1
-imgMapLvl8
+btnOnOver
   rotate: false
-  xy: 942, 49
-  size: 44, 22
-  orig: 44, 22
-  offset: 0, 0
-  index: -1
-titleAbout
-  rotate: false
-  xy: 983, 105
-  size: 40, 10
-  orig: 40, 10
-  offset: 0, 0
-  index: -1
-btnInGameMenuOver
-  rotate: false
-  xy: 983, 94
-  size: 33, 9
-  orig: 33, 9
-  offset: 0, 0
-  index: -1
-btnOff
-  rotate: false
-  xy: 982, 83
+  xy: 571, 16
   size: 30, 9
   orig: 30, 9
   offset: 0, 0
   index: -1
-imgSpeed5
+imgSpeed4
   rotate: false
-  xy: 605, 54
+  xy: 603, 14
   size: 44, 8
   orig: 44, 8
   offset: 0, 0
   index: -1
+imgMapLvl8
+  rotate: false
+  xy: 729, 40
+  size: 44, 22
+  orig: 44, 22
+  offset: 0, 0
+  index: -1
+imgMapLvl2
+  rotate: false
+  xy: 775, 40
+  size: 44, 22
+  orig: 44, 22
+  offset: 0, 0
+  index: -1
+btnInGameMenu
+  rotate: false
+  xy: 821, 53
+  size: 33, 9
+  orig: 33, 9
+  offset: 0, 0
+  index: -1
+btnInGameMenuOver
+  rotate: false
+  xy: 821, 42
+  size: 33, 9
+  orig: 33, 9
+  offset: 0, 0
+  index: -1
 btnOffOver
   rotate: false
-  xy: 651, 53
+  xy: 856, 53
   size: 30, 9
   orig: 30, 9
   offset: 0, 0
   index: -1
 btnOn
   rotate: false
-  xy: 683, 53
+  xy: 856, 42
   size: 30, 9
   orig: 30, 9
   offset: 0, 0
   index: -1
-btnOnOver
+btnOff
   rotate: false
-  xy: 715, 53
+  xy: 888, 53
   size: 30, 9
   orig: 30, 9
-  offset: 0, 0
-  index: -1
-apple
-  rotate: false
-  xy: 1, 1
-  size: 6, 6
-  orig: 6, 6
-  offset: 0, 0
-  index: -1
-snakeHead
-  rotate: false
-  xy: 9, 1
-  size: 6, 6
-  orig: 6, 6
-  offset: 0, 0
-  index: -1
-snakePart
-  rotate: false
-  xy: 17, 1
-  size: 6, 6
-  orig: 6, 6
-  offset: 0, 0
-  index: -1
-snakeTail
-  rotate: false
-  xy: 25, 1
-  size: 6, 6
-  orig: 6, 6
-  offset: 0, 0
-  index: -1
-wall
-  rotate: false
-  xy: 33, 1
-  size: 6, 6
-  orig: 6, 6
   offset: 0, 0
   index: -1
 btnLeft
   rotate: false
-  xy: 451, 26
+  xy: 1017, 115
   size: 6, 12
   orig: 6, 12
   offset: 0, 0
   index: -1
 btnRight
   rotate: false
-  xy: 451, 12
+  xy: 371, 64
   size: 6, 12
   orig: 6, 12
+  offset: 0, 0
+  index: -1
+snakeHead
+  rotate: false
+  xy: 125, 1
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+apple
+  rotate: false
+  xy: 133, 1
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+snakePart
+  rotate: false
+  xy: 141, 1
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+snakeTail
+  rotate: false
+  xy: 149, 1
+  size: 6, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+wall
+  rotate: false
+  xy: 157, 1
+  size: 6, 6
+  orig: 6, 6
   offset: 0, 0
   index: -1
