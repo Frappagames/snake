@@ -65,7 +65,7 @@ public class SplashScreen implements Screen {
         stage.act();
         stage.draw();
         if (TimeUtils.millis() > (startTime + SPLASHSCREEN_DURATION)) {
-            game.setScreen(new PlayScreen(game));
+            game.setScreen(new MenuScreen(game));
         }
     }
 

@@ -33,7 +33,7 @@ public class PlayScreen extends GameScreen {
     protected void update(float delta) {
         // Check for inputs
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-            Gdx.app.exit();
+            game.setScreen(new MenuScreen(game));
         }
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {

@@ -19,7 +19,6 @@ abstract public class GameScreen implements Screen {
     private final Viewport viewport;
     protected     Snake               game;
     protected Stage stage;
-    protected Table table;
 
     public GameScreen(Snake game) {
         this.game = game;
