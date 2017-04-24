@@ -70,6 +70,11 @@ public class PlayScreen extends GameScreen {
                 apple.reset();
             } while(snake.inSnake(apple.getX(), apple.getY()));
         }
+
+        // Check colision with himself
+        if (snake.eatHimself()) {
+            game.setScreen(new PlayScreen(game)); // restart
+        }
     }
 
     protected void draw(float delta) {

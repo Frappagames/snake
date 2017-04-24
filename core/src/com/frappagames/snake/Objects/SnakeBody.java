@@ -78,6 +78,24 @@ public class SnakeBody {
         }
     }
 
+    /**
+     * Does the snake eat himself ?
+     * Check if the snake head overlap his body
+     *
+     * @return boolean
+     */
+    public boolean eatHimself() {
+        SnakePart head = parts.get(0);
+
+        for (int i = 1; i < parts.size(); i++) {
+            if (parts.get(i).getX() == head.getX() && parts.get(i).getY() == head.getY()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public boolean intersect(int x, int y) {
         SnakePart part = parts.get(0);
 

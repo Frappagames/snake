@@ -2,7 +2,6 @@ package com.frappagames.snake.Objects;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Affine2;
 import com.frappagames.snake.Snake;
 import com.frappagames.snake.Tools.Assets;
 
@@ -12,70 +11,58 @@ import com.frappagames.snake.Tools.Assets;
 
 public class SnakePart {
     public enum Direction {LEFT, RIGHT, TOP, DOWN}
-    public enum PartType {HEAD, BODY, TAIL}
+    enum PartType {HEAD, BODY, TAIL}
 
     private Direction direction;
     private int x, y;
 
-    public SnakePart(Direction direction, int x, int y) {
+    SnakePart(Direction direction, int x, int y) {
         this.setDirection(direction);
         this.setX(x);
         this.setY(y);
     }
 
-    public Direction getDirection() {
+    Direction getDirection() {
         return direction;
     }
 
-    public void setDirection(Direction direction) {
+    void setDirection(Direction direction) {
         this.direction = direction;
     }
 
-    public int getX() {
+    int getX() {
         return x;
     }
 
-    public void setX(int x) {
+    private void setX(int x) {
         this.x = x;
     }
 
-    public int getY() {
+    int getY() {
         return y;
     }
 
-    public void setY(int y) {
+    private void setY(int y) {
         this.y = y;
     }
 
-    public void draw(Batch batch, PartType type) {
+    void draw(Batch batch, PartType type) {
         TextureRegion texture;
         int rotation;
-        Affine2 transform = new Affine2();
 
+        // Define texture to draw
         switch (type) {
-            case HEAD:
-                texture = Assets.snakeHead;
-                break;
-            case TAIL:
-                texture = Assets.snakeTail;
-                break;
-            default:
-                texture = Assets.snakePart;
-                break;
+            case HEAD:  texture = Assets.snakeHead; break;
+            case TAIL:  texture = Assets.snakeTail; break;
+            default:    texture = Assets.snakePart; break;
         }
 
+        // Define rotation to apply depending on the direction
         switch (direction) {
-            case TOP:
-                rotation = 0;
-                break;
-            case DOWN:
-                rotation = 180;
-                break;
-            case LEFT:
-                rotation = 90;
-                break;
-            default:
-                rotation = -90;
+            case TOP:   rotation = 0;   break;
+            case DOWN:  rotation = 180; break;
+            case LEFT:  rotation = 90;  break;
+            default:    rotation = -90;
         }
 
         batch.draw(
@@ -93,7 +80,7 @@ public class SnakePart {
         );
     }
 
-    public void move() {
+    void move() {
         switch (this.direction) {
             case LEFT:  this.x--; break;
             case RIGHT: this.x++; break;
