@@ -1,6 +1,8 @@
 package com.frappagames.snake.Objects;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Affine2;
 import com.frappagames.snake.Snake;
 import com.frappagames.snake.Tools.Assets;
 
@@ -10,6 +12,7 @@ import com.frappagames.snake.Tools.Assets;
 
 public class SnakePart {
     public enum Direction {LEFT, RIGHT, TOP, DOWN}
+    public enum PartType {HEAD, BODY, TAIL}
 
     private Direction direction;
     private int x, y;
@@ -44,11 +47,49 @@ public class SnakePart {
         this.y = y;
     }
 
-    public void draw(Batch batch) {
+    public void draw(Batch batch, PartType type) {
+        TextureRegion texture;
+        int rotation;
+        Affine2 transform = new Affine2();
+
+        switch (type) {
+            case HEAD:
+                texture = Assets.snakeHead;
+                break;
+            case TAIL:
+                texture = Assets.snakeTail;
+                break;
+            default:
+                texture = Assets.snakePart;
+                break;
+        }
+
+        switch (direction) {
+            case TOP:
+                rotation = 0;
+                break;
+            case DOWN:
+                rotation = 180;
+                break;
+            case LEFT:
+                rotation = 90;
+                break;
+            default:
+                rotation = -90;
+        }
+
         batch.draw(
-            Assets.snakePart,
-            (this.x * Snake.TILE_SIZE) + Snake.DRAW_OFFSET,
-            (this.y * Snake.TILE_SIZE) + Snake.DRAW_OFFSET
+                texture,
+                (this.x * Snake.TILE_SIZE) + Snake.DRAW_OFFSET,
+                (this.y * Snake.TILE_SIZE) + Snake.DRAW_OFFSET,
+                Snake.TILE_SIZE / 2,
+                Snake.TILE_SIZE / 2,
+                Snake.TILE_SIZE,
+                Snake.TILE_SIZE,
+                1,
+                1,
+                rotation,
+                false
         );
     }
 

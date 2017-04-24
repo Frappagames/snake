@@ -10,7 +10,6 @@ import com.frappagames.snake.Tools.Assets;
  */
 
 public class Apple {
-    private static final int APPLE_SIZE = 6;
     private int x, y;
 
     public Apple() {

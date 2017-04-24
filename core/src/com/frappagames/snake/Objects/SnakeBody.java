@@ -62,8 +62,19 @@ public class SnakeBody {
     }
 
     public void draw(Batch batch) {
+        int partNumber = 0;
+        int snakeSize = parts.size();
+
         for (SnakePart part: parts) {
-            part.draw(batch);
+            partNumber++;
+
+            if (partNumber == 1) {
+                part.draw(batch, SnakePart.PartType.HEAD);
+            } else if (partNumber == snakeSize) {
+                part.draw(batch, SnakePart.PartType.TAIL);
+            } else {
+                part.draw(batch, SnakePart.PartType.BODY);
+            }
         }
     }
 
