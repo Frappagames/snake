@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.frappagames.snake.Snake;
 
 /**
@@ -16,15 +17,17 @@ import com.frappagames.snake.Snake;
  * Created by Jérémy MOREAU on 14/08/15.
  */
 public class SplashScreen implements Screen {
+    private static final int SPLASHSCREEN_DURATION = 2000;
     private final Snake game;
 
     private OrthographicCamera camera;
 
     private Texture splashTexture;
     private Stage stage;
+    private long startTime;
 
-    public SplashScreen(Snake gameApp) {
-        this.game = gameApp;
+    public SplashScreen(Snake gameObject) {
+        this.game = gameObject;
 
         stage = new Stage();
         splashTexture = new Texture(Gdx.files.internal("SplashScreen.png"));
@@ -38,16 +41,13 @@ public class SplashScreen implements Screen {
         splashImage.setY(40 - (splashImage.getHeight() / 2));
 
         splashImage.addAction(Actions.sequence(
-                Actions.alpha(0),
-                Actions.fadeIn(0.5f),
-                Actions.delay(1),
-                Actions.fadeOut(0.5f),
-                Actions.run(new Runnable() {
-                    @Override
-                    public void run() {
-                        game.setScreen(new PlayScreen(game));
-                    }
-                })));
+            Actions.alpha(0),
+            Actions.fadeIn(0.5f),
+            Actions.delay(1),
+            Actions.fadeOut(0.5f)
+        ));
+
+        startTime = TimeUtils.millis();
     }
 
     @Override
@@ -64,6 +64,9 @@ public class SplashScreen implements Screen {
 
         stage.act();
         stage.draw();
+        if (TimeUtils.millis() > (startTime + SPLASHSCREEN_DURATION)) {
+            game.setScreen(new PlayScreen(game));
+        }
     }
 
     @Override
