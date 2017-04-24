@@ -7,6 +7,7 @@ import com.frappagames.snake.Objects.Apple;
 import com.frappagames.snake.Objects.SnakeBody;
 import com.frappagames.snake.Objects.SnakePart;
 import com.frappagames.snake.Snake;
+import com.frappagames.snake.Tools.Assets;
 import com.frappagames.snake.Tools.GameScreen;
 
 /**
@@ -25,7 +26,7 @@ public class PlayScreen extends GameScreen {
 
         this.game = game;
         this.snake = new SnakeBody(SnakePart.Direction.RIGHT, 10, 10);
-        this.apple = new Apple(20, 5);
+        this.apple = new Apple();
         this.lastMoveTime = 0;
     }
 
@@ -73,6 +74,7 @@ public class PlayScreen extends GameScreen {
 
     protected void draw(float delta) {
         game.batch.begin();
+        game.batch.draw(Assets.gameBackground, 0, 0);
         this.snake.draw(game.batch);
         this.apple.draw(game.batch);
         game.batch.end();

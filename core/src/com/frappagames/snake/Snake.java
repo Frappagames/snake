@@ -17,16 +17,17 @@ package com.frappagames.snake;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.frappagames.snake.Objects.SnakePart;
 import com.frappagames.snake.Screens.SplashScreen;
 import com.frappagames.snake.Tools.Assets;
 
 public class Snake extends Game {
 	public static final String TITLE  = "SNAKE";
-	public static final int    GRID_WIDTH  = 40;
-	public static final int    GRID_HEIGHT = 20;
-	public static final int    WIDTH  = SnakePart.PART_SIZE * GRID_WIDTH;
-	public static final int    HEIGHT = SnakePart.PART_SIZE * GRID_HEIGHT;
+	public static final int    GRID_WIDTH  = 20;
+	public static final int    GRID_HEIGHT = 9;
+	public static final int    TILE_SIZE = 6;
+	public static final int    DRAW_OFFSET = 4;
+	public static final int    WIDTH  = 128;
+	public static final int    HEIGHT = 72;
 	public SpriteBatch batch;
 	
 	@Override

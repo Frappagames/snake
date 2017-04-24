@@ -6,23 +6,22 @@ import com.frappagames.snake.Snake;
 import com.frappagames.snake.Tools.Assets;
 
 /**
- * Created by gfp on 23/03/17.
+ * Apple object
  */
 
 public class Apple {
-    public static final int APPLE_SIZE = 5;
+    private static final int APPLE_SIZE = 6;
     private int x, y;
 
-    public Apple(int x, int y) {
-        this.setX(x);
-        this.setY(y);
+    public Apple() {
+        this.reset();
     }
 
     public int getX() {
         return x;
     }
 
-    public void setX(int x) {
+    private void setX(int x) {
         this.x = x;
     }
 
@@ -30,12 +29,16 @@ public class Apple {
         return y;
     }
 
-    public void setY(int y) {
+    private void setY(int y) {
         this.y = y;
     }
 
     public void draw(Batch batch) {
-        batch.draw(Assets.apple, this.x * APPLE_SIZE, this.y * APPLE_SIZE);
+        batch.draw(
+            Assets.apple,
+            (this.x * Snake.TILE_SIZE) + Snake.DRAW_OFFSET,
+            (this.y * Snake.TILE_SIZE) + Snake.DRAW_OFFSET
+        );
     }
 
     public void reset() {

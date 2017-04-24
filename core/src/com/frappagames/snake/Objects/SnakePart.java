@@ -9,8 +9,7 @@ import com.frappagames.snake.Tools.Assets;
  */
 
 public class SnakePart {
-    public enum Direction {LEFT, RIGHT, TOP, DOWN};
-    public static final int PART_SIZE = 5;
+    public enum Direction {LEFT, RIGHT, TOP, DOWN}
 
     private Direction direction;
     private int x, y;
@@ -46,7 +45,11 @@ public class SnakePart {
     }
 
     public void draw(Batch batch) {
-        batch.draw(Assets.snakePart, this.x * PART_SIZE, this.y * PART_SIZE);
+        batch.draw(
+            Assets.snakePart,
+            (this.x * Snake.TILE_SIZE) + Snake.DRAW_OFFSET,
+            (this.y * Snake.TILE_SIZE) + Snake.DRAW_OFFSET
+        );
     }
 
     public void move() {

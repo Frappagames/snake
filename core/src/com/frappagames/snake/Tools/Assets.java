@@ -14,6 +14,7 @@ public class Assets {
     private static TextureAtlas itemsAtlas;
 
     public static TextureRegion snakePart, apple, snakeHead, snakeTail;
+    public static TextureRegion gameBackground, pageBackground, imgMenu;
 //    public static Animation standAnimation, walkAnimation, jumpAnimation;
 //
 //    public static Sound clickSound;
@@ -29,6 +30,10 @@ public class Assets {
         snakeHead  = new TextureRegion(itemsAtlas.findRegion("snakeHead"));
         snakeTail  = new TextureRegion(itemsAtlas.findRegion("snakeTail"));
         apple      = new TextureRegion(itemsAtlas.findRegion("apple"));
+
+        gameBackground = new TextureRegion(itemsAtlas.findRegion("gameBackground"));
+        pageBackground = new TextureRegion(itemsAtlas.findRegion("pageBackground"));
+        imgMenu        = new TextureRegion(itemsAtlas.findRegion("imgMenu"));
 
 //        // Load Music and sounds
 //        music = Gdx.audio.newMusic(Gdx.files.internal("music.ogg"));
