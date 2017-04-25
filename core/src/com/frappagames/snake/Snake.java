@@ -27,6 +27,7 @@ public class Snake extends Game {
 	public static final int    DRAW_OFFSET = 4;
 	public static final int    WIDTH  = 128;
 	public static final int    HEIGHT = 72;
+	public static final float  PAGE_TRANSITION = 0.4f;
 	public SpriteBatch batch;
 	
 	@Override

@@ -2,9 +2,12 @@ package com.frappagames.snake.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Align;
 import com.frappagames.snake.Snake;
 import com.frappagames.snake.Tools.Assets;
 import com.frappagames.snake.Tools.GameScreen;
@@ -17,56 +20,101 @@ public class MenuScreen extends GameScreen {
     private Snake game;
     protected Table table;
 
-    public MenuScreen(Snake game) {
+    public MenuScreen(final Snake game) {
         super(game);
 
         this.game = game;
 
+        // Define Menu table
         this.table = new Table();
-        this.table.debug();
-        this.stage.addActor(table);
+        this.table.setFillParent(true);     // Display on all screen
+        this.table.align(Align.right);      // Align menu to right
+        this.table.pad(Snake.DRAW_OFFSET);  // Add padding
+        this.stage.addActor(table);         // Add table to stage for display
 
+        // Start button : Launch "select difficulty" screen to start a new game
         ImageButton startBtn = new ImageButton(
                 new TextureRegionDrawable(Assets.btnStart),
                 new TextureRegionDrawable(Assets.btnStartOver),
                 new TextureRegionDrawable(Assets.btnStartOver)
         );
-        this.table.add(startBtn).row();
+        startBtn.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(new DifficultyScreen(game));
+            }
+        });
+        this.table.add(startBtn).pad(1, 0, 0, 0).row();
 
+        // Score button : Display scores screen
         ImageButton scoresBtn = new ImageButton(
                 new TextureRegionDrawable(Assets.btnScores),
                 new TextureRegionDrawable(Assets.btnScoresOver),
                 new TextureRegionDrawable(Assets.btnScoresOver)
         );
-        this.table.add(scoresBtn).row();
+        scoresBtn.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(new ScoreScreen(game));
+            }
+        });
+        this.table.add(scoresBtn).pad(1, 0, 0, 0).row();
 
+        // Option button : Display options screen (for enable or disable sounds)
         ImageButton optionsBtn = new ImageButton(
                 new TextureRegionDrawable(Assets.btnOptions),
                 new TextureRegionDrawable(Assets.btnOptionsOver),
                 new TextureRegionDrawable(Assets.btnOptionsOver)
         );
-        this.table.add(optionsBtn).row();
+        optionsBtn.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(new OptionsScreen(game));
+            }
+        });
+        this.table.add(optionsBtn).pad(1, 0, 0, 0).row();
 
+        // Help button : Display help screens (explain game rules)
         ImageButton helpBtn = new ImageButton(
                 new TextureRegionDrawable(Assets.btnHelp),
                 new TextureRegionDrawable(Assets.btnHelpOver),
                 new TextureRegionDrawable(Assets.btnHelpOver)
         );
-        this.table.add(helpBtn).row();
+        helpBtn.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(new HelpScreen(game));
+            }
+        });
+        this.table.add(helpBtn).pad(1, 0, 0, 0).row();
 
+        // About button : Display about screens to show credits
         ImageButton aboutBtn = new ImageButton(
                 new TextureRegionDrawable(Assets.btnAbout),
                 new TextureRegionDrawable(Assets.btnAboutOver),
                 new TextureRegionDrawable(Assets.btnAboutOver)
         );
-        this.table.add(aboutBtn).row();
+        aboutBtn.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(new AboutScreen(game));
+            }
+        });
+        this.table.add(aboutBtn).pad(1, 0, 0, 0).row();
 
+        // Exit button : Quit the game
         ImageButton exitBtn = new ImageButton(
                 new TextureRegionDrawable(Assets.btnExit),
                 new TextureRegionDrawable(Assets.btnExitOver),
                 new TextureRegionDrawable(Assets.btnExitOver)
         );
-        this.table.add(exitBtn).row();
+        exitBtn.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.exit();
+            }
+        });
+        this.table.add(exitBtn).pad(2, 0, 2, 0).row();
 
     }
 

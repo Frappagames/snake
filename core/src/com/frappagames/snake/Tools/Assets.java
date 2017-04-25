@@ -3,7 +3,8 @@ package com.frappagames.snake.Tools;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+
+import java.util.ArrayList;
 
 /**
  * Assets management class
@@ -16,8 +17,13 @@ public class Assets {
     public static TextureRegion snakePart, apple, snakeHead, snakeTail;
     public static TextureRegion gameBackground, pageBackground, imgMenu;
 
-    public static TextureRegion btnStart, btnAbout, btnExit, btnHelp, btnOptions, btnScores,
-        btnStartOver, btnAboutOver, btnExitOver, btnHelpOver, btnOptionsOver, btnScoresOver;
+    public static TextureRegion btnStart, btnAbout, btnExit, btnHelp, btnOptions, btnScores, btnBack, btnLeft, btnRight,
+        btnStartOver, btnAboutOver, btnExitOver, btnHelpOver, btnOptionsOver, btnScoresOver, btnBackOver, btnLeftOver, btnRightOver;
+
+    public static TextureRegion titleHelp, titleAbout, titleDifficulty, titleGameOver,
+            titleOptions, titleScores;
+
+    public static ArrayList<TextureRegion> aboutImages, helpImages;
 
 
 //    public static Animation standAnimation, walkAnimation, jumpAnimation;
@@ -49,6 +55,9 @@ public class Assets {
         btnHelp = new TextureRegion(itemsAtlas.findRegion("btnHelp"));
         btnOptions = new TextureRegion(itemsAtlas.findRegion("btnOptions"));
         btnScores = new TextureRegion(itemsAtlas.findRegion("btnScores"));
+        btnBack = new TextureRegion(itemsAtlas.findRegion("btnBack"));
+        btnLeft = new TextureRegion(itemsAtlas.findRegion("btnLeft"));
+        btnRight = new TextureRegion(itemsAtlas.findRegion("btnRight"));
 
         btnStartOver = new TextureRegion(itemsAtlas.findRegion("btnStartOver"));
         btnAboutOver = new TextureRegion(itemsAtlas.findRegion("btnAboutOver"));
@@ -56,6 +65,29 @@ public class Assets {
         btnHelpOver = new TextureRegion(itemsAtlas.findRegion("btnHelpOver"));
         btnOptionsOver = new TextureRegion(itemsAtlas.findRegion("btnOptionsOver"));
         btnScoresOver = new TextureRegion(itemsAtlas.findRegion("btnScoresOver"));
+        btnBackOver = new TextureRegion(itemsAtlas.findRegion("btnBackOver"));
+        btnLeftOver = new TextureRegion(itemsAtlas.findRegion("btnLeftOver"));
+        btnRightOver = new TextureRegion(itemsAtlas.findRegion("btnRightOver"));
+
+        // Help page
+        titleHelp = new TextureRegion(itemsAtlas.findRegion("titleHelp"));
+        helpImages = new ArrayList<TextureRegion>();
+        helpImages.add(new TextureRegion(itemsAtlas.findRegion("imgTips1")));
+        helpImages.add(new TextureRegion(itemsAtlas.findRegion("imgTips2")));
+        helpImages.add(new TextureRegion(itemsAtlas.findRegion("imgTips3")));
+        helpImages.add(new TextureRegion(itemsAtlas.findRegion("imgTips4")));
+        helpImages.add(new TextureRegion(itemsAtlas.findRegion("imgTips5")));
+        helpImages.add(new TextureRegion(itemsAtlas.findRegion("imgTips6")));
+
+        // About Page
+        titleAbout = new TextureRegion(itemsAtlas.findRegion("titleAbout"));
+        aboutImages = new ArrayList<TextureRegion>();
+        aboutImages.add(new TextureRegion(itemsAtlas.findRegion("imgAbout1")));
+        aboutImages.add(new TextureRegion(itemsAtlas.findRegion("imgAbout2")));
+        aboutImages.add(new TextureRegion(itemsAtlas.findRegion("imgAbout3")));
+        aboutImages.add(new TextureRegion(itemsAtlas.findRegion("imgAbout4")));
+        aboutImages.add(new TextureRegion(itemsAtlas.findRegion("imgAbout5")));
+
 
 //        // Load Music and sounds
 //        music = Gdx.audio.newMusic(Gdx.files.internal("music.ogg"));
