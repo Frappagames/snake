@@ -30,7 +30,7 @@ public class Assets {
     public static TextureRegion titleHelp, titleAbout, titleDifficulty, titleGameOver,
             titleOptions, titleScores;
 
-    public static ArrayList<TextureRegion> aboutImages, helpImages, miniMap;
+    public static ArrayList<TextureRegion> aboutImages, helpImages, miniMap, speedImages;
 
 
 //    public static Animation standAnimation, walkAnimation, jumpAnimation;
@@ -107,6 +107,15 @@ public class Assets {
 
         // Option page
         titleOptions = new TextureRegion(itemsAtlas.findRegion("titleOptions"));
+
+        // Difficulty Page
+        titleDifficulty = new TextureRegion(itemsAtlas.findRegion("titleDifficulty"));
+        speedImages = new ArrayList<TextureRegion>();
+        speedImages.add(new TextureRegion(itemsAtlas.findRegion("imgSpeed1")));
+        speedImages.add(new TextureRegion(itemsAtlas.findRegion("imgSpeed2")));
+        speedImages.add(new TextureRegion(itemsAtlas.findRegion("imgSpeed3")));
+        speedImages.add(new TextureRegion(itemsAtlas.findRegion("imgSpeed4")));
+        speedImages.add(new TextureRegion(itemsAtlas.findRegion("imgSpeed5")));
 
         // Mini-maps
         miniMap = new ArrayList<TextureRegion>();

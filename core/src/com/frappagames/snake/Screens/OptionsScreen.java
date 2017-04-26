@@ -37,6 +37,7 @@ class OptionsScreen extends GameScreen {
         Image titleImg = new Image(Assets.titleOptions);
         table.add(titleImg).pad(2).colspan(3).row();
 
+        // Display On / Off buttons
         onBtn = new ImageButton(
                 new TextureRegionDrawable(Assets.btnOn),
                 new TextureRegionDrawable(Assets.btnOnOver),

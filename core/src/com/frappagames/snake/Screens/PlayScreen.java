@@ -16,22 +16,34 @@ import com.frappagames.snake.Tools.Settings;
  */
 
 class PlayScreen extends GameScreen {
-    private static final int MOVE_SPEED = 100;
+    private static final int DEFAULT_MOVE_SPEED = 375;
+    private static final int SPEED_STEP = 50;
     private SnakeBody snake;
     private Apple apple;
     private Snake game;
     private long lastMoveTime;
+    private int currentSpeed, currentMap;
 
-    PlayScreen(Snake game) {
-        super(game);
-
-        this.game = game;
-        this.snake = new SnakeBody(SnakePart.Direction.RIGHT, 10, 10);
-        this.apple = new Apple();
-        this.lastMoveTime = 0;
+    @Override
+    public void show() {
+        super.show();
 
         // Play Music ♫
         if (Settings.soundEnabled) Assets.music.play();
+    }
+
+    PlayScreen(Snake game, int currentSpeed, int currentMap) {
+        super(game);
+
+        System.out.println(currentSpeed);
+        System.out.println(currentMap);
+
+        this.game = game;
+        this.currentSpeed = currentSpeed;
+        this.currentMap = currentMap;
+        this.snake = new SnakeBody(SnakePart.Direction.RIGHT, 10, 10);
+        this.apple = new Apple();
+        this.lastMoveTime = 0;
     }
 
     protected void update(float delta) {
@@ -58,7 +70,7 @@ class PlayScreen extends GameScreen {
         }
 
         // Refresh screen
-        if (TimeUtils.millis() > lastMoveTime + MOVE_SPEED) {
+        if (TimeUtils.millis() > lastMoveTime + (DEFAULT_MOVE_SPEED - (SPEED_STEP * currentSpeed))) {
             lastMoveTime = TimeUtils.millis();
             moveSnake();
         }
@@ -80,7 +92,7 @@ class PlayScreen extends GameScreen {
         // Check colision with himself
         if (snake.eatHimself()) {
             Assets.playSound(Assets.loseSound);
-            game.setScreen(new PlayScreen(game)); // restart
+            game.setScreen(new PlayScreen(game, currentSpeed, currentMap)); // restart
         }
     }
 
@@ -90,5 +102,23 @@ class PlayScreen extends GameScreen {
         this.snake.draw(game.batch);
         this.apple.draw(game.batch);
         game.batch.end();
+    }
+
+    @Override
+    public void pause() {
+        super.pause();
+        if (Settings.soundEnabled) Assets.music.pause();
+    }
+
+    @Override
+    public void resume() {
+        super.resume();
+        if (Settings.soundEnabled) Assets.music.play();
+    }
+
+    @Override
+    public void hide() {
+        super.hide();
+        if (Settings.soundEnabled) Assets.music.stop();
     }
 }

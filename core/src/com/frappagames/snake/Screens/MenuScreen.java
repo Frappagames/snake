@@ -135,7 +135,7 @@ public class MenuScreen extends GameScreen {
         // Check for inputs
         if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
             Assets.playSound(Assets.clickSound);
-            game.setScreen(new PlayScreen(game));
+            game.setScreen(new DifficultyScreen(game));
         }
     }
 
