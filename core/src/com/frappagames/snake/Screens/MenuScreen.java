@@ -41,6 +41,7 @@ public class MenuScreen extends GameScreen {
         startBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                Assets.playSound(Assets.clickSound);
                 game.setScreen(new DifficultyScreen(game));
             }
         });
@@ -55,6 +56,7 @@ public class MenuScreen extends GameScreen {
         scoresBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                Assets.playSound(Assets.clickSound);
                 game.setScreen(new ScoreScreen(game));
             }
         });
@@ -69,6 +71,7 @@ public class MenuScreen extends GameScreen {
         optionsBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                Assets.playSound(Assets.clickSound);
                 game.setScreen(new OptionsScreen(game));
             }
         });
@@ -83,6 +86,7 @@ public class MenuScreen extends GameScreen {
         helpBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                Assets.playSound(Assets.clickSound);
                 game.setScreen(new HelpScreen(game));
             }
         });
@@ -97,6 +101,7 @@ public class MenuScreen extends GameScreen {
         aboutBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                Assets.playSound(Assets.clickSound);
                 game.setScreen(new AboutScreen(game));
             }
         });
@@ -111,6 +116,7 @@ public class MenuScreen extends GameScreen {
         exitBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                Assets.playSound(Assets.clickSound);
                 Gdx.app.exit();
             }
         });
@@ -122,11 +128,13 @@ public class MenuScreen extends GameScreen {
     protected void update(float delta) {
         // Check for inputs
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+            Assets.playSound(Assets.clickSound);
             Gdx.app.exit();
         }
 
         // Check for inputs
         if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
+            Assets.playSound(Assets.clickSound);
             game.setScreen(new PlayScreen(game));
         }
     }

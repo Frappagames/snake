@@ -1,6 +1,4 @@
 /**
- * TODO : * MENU
- * TODO : * Page infos
  * TODO : * Sélection de difficulté
  * TODO : * Navigation clavier
  * TODO : * Ecran GameOver
@@ -18,6 +16,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.frappagames.snake.Screens.SplashScreen;
 import com.frappagames.snake.Tools.Assets;
+import com.frappagames.snake.Tools.Settings;
 
 public class Snake extends Game {
 	public static final String TITLE  = "SNAKE";
@@ -33,6 +32,7 @@ public class Snake extends Game {
 	@Override
 	public void create () {
 		Assets.load();
+		Settings.load();
 		batch = new SpriteBatch();
 		setScreen(new SplashScreen(this));
 	}

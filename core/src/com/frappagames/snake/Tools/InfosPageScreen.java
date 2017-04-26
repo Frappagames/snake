@@ -60,6 +60,7 @@ public class InfosPageScreen extends GameScreen {
         leftBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                Assets.playSound(Assets.clickSound);
                 changeLeft();
             }
         });
@@ -70,6 +71,7 @@ public class InfosPageScreen extends GameScreen {
         rightBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                Assets.playSound(Assets.clickSound);
                 changeRight();
             }
         });
@@ -88,6 +90,7 @@ public class InfosPageScreen extends GameScreen {
         backBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                Assets.playSound(Assets.clickSound);
                 game.setScreen(new MenuScreen(game));
             }
         });
@@ -137,16 +140,19 @@ public class InfosPageScreen extends GameScreen {
         // Check for inputs
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)
                 || Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
+            Assets.playSound(Assets.clickSound);
             game.setScreen(new MenuScreen(game));
         }
 
         // Check for inputs
         if (Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) {
+            Assets.playSound(Assets.clickSound);
             changeLeft();
         }
 
         // Check for inputs
         if (Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
+            Assets.playSound(Assets.clickSound);
             changeRight();
         }
     }

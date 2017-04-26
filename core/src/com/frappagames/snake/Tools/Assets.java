@@ -1,8 +1,13 @@
 package com.frappagames.snake.Tools;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
 import java.util.ArrayList;
 
@@ -17,23 +22,31 @@ public class Assets {
     public static TextureRegion snakePart, apple, snakeHead, snakeTail;
     public static TextureRegion gameBackground, pageBackground, imgMenu;
 
-    public static TextureRegion btnStart, btnAbout, btnExit, btnHelp, btnOptions, btnScores, btnBack, btnLeft, btnRight,
-        btnStartOver, btnAboutOver, btnExitOver, btnHelpOver, btnOptionsOver, btnScoresOver, btnBackOver, btnLeftOver, btnRightOver;
+    public static TextureRegion btnStart, btnAbout, btnExit, btnHelp, btnOptions, btnScores,
+        btnBack, btnLeft, btnRight, btnOn, btnOff,
+        btnStartOver, btnAboutOver, btnExitOver, btnHelpOver, btnOptionsOver, btnScoresOver,
+        btnBackOver, btnLeftOver, btnRightOver, btnOnOver, btnOffOver;
 
     public static TextureRegion titleHelp, titleAbout, titleDifficulty, titleGameOver,
             titleOptions, titleScores;
 
-    public static ArrayList<TextureRegion> aboutImages, helpImages;
+    public static ArrayList<TextureRegion> aboutImages, helpImages, miniMap;
 
 
 //    public static Animation standAnimation, walkAnimation, jumpAnimation;
 //
-//    public static Sound clickSound;
-//    public static Music music;
-//
-//    public static Label.LabelStyle fontScore;
+    public static Sound clickSound, loseSound, winSound, powerupSound;
+    public static Music music;
+
+    public static Label.LabelStyle labelStyleNormal, labelStyleBold;
 
     public static void load() {
+        // Font
+        BitmapFont fontNormal = new BitmapFont(Gdx.files.internal("fontNormal.fnt"), false);
+        labelStyleNormal      = new Label.LabelStyle(fontNormal, Color.WHITE);
+        BitmapFont fontBold   = new BitmapFont(Gdx.files.internal("fontBold.fnt"), false);
+        labelStyleBold        = new Label.LabelStyle(fontBold, Color.WHITE);
+
         // Load Textures
         itemsAtlas = new TextureAtlas(Gdx.files.internal("snake.pack"));
 
@@ -58,6 +71,8 @@ public class Assets {
         btnBack = new TextureRegion(itemsAtlas.findRegion("btnBack"));
         btnLeft = new TextureRegion(itemsAtlas.findRegion("btnLeft"));
         btnRight = new TextureRegion(itemsAtlas.findRegion("btnRight"));
+        btnOn = new TextureRegion(itemsAtlas.findRegion("btnOn"));
+        btnOff = new TextureRegion(itemsAtlas.findRegion("btnOff"));
 
         btnStartOver = new TextureRegion(itemsAtlas.findRegion("btnStartOver"));
         btnAboutOver = new TextureRegion(itemsAtlas.findRegion("btnAboutOver"));
@@ -68,6 +83,8 @@ public class Assets {
         btnBackOver = new TextureRegion(itemsAtlas.findRegion("btnBackOver"));
         btnLeftOver = new TextureRegion(itemsAtlas.findRegion("btnLeftOver"));
         btnRightOver = new TextureRegion(itemsAtlas.findRegion("btnRightOver"));
+        btnOnOver = new TextureRegion(itemsAtlas.findRegion("btnOnOver"));
+        btnOffOver = new TextureRegion(itemsAtlas.findRegion("btnOffOver"));
 
         // Help page
         titleHelp = new TextureRegion(itemsAtlas.findRegion("titleHelp"));
@@ -88,13 +105,29 @@ public class Assets {
         aboutImages.add(new TextureRegion(itemsAtlas.findRegion("imgAbout4")));
         aboutImages.add(new TextureRegion(itemsAtlas.findRegion("imgAbout5")));
 
+        // Option page
+        titleOptions = new TextureRegion(itemsAtlas.findRegion("titleOptions"));
 
-//        // Load Music and sounds
-//        music = Gdx.audio.newMusic(Gdx.files.internal("music.ogg"));
-//        music.setLooping(true);
-//        music.setVolume(0.5f);
-//
-//        clickSound = Gdx.audio.newSound(Gdx.files.internal("sound-click.mp3"));
+        // Mini-maps
+        miniMap = new ArrayList<TextureRegion>();
+        miniMap.add(new TextureRegion(itemsAtlas.findRegion("imgMapLvl1")));
+        miniMap.add(new TextureRegion(itemsAtlas.findRegion("imgMapLvl2")));
+        miniMap.add(new TextureRegion(itemsAtlas.findRegion("imgMapLvl3")));
+        miniMap.add(new TextureRegion(itemsAtlas.findRegion("imgMapLvl4")));
+        miniMap.add(new TextureRegion(itemsAtlas.findRegion("imgMapLvl5")));
+        miniMap.add(new TextureRegion(itemsAtlas.findRegion("imgMapLvl6")));
+        miniMap.add(new TextureRegion(itemsAtlas.findRegion("imgMapLvl7")));
+        miniMap.add(new TextureRegion(itemsAtlas.findRegion("imgMapLvl8")));
+
+        // Load Music and sounds
+        music = Gdx.audio.newMusic(Gdx.files.internal("music.ogg"));
+        music.setLooping(true);
+        music.setVolume(0.5f);
+
+        clickSound = Gdx.audio.newSound(Gdx.files.internal("click.ogg"));
+        loseSound = Gdx.audio.newSound(Gdx.files.internal("lose.ogg"));
+        winSound = Gdx.audio.newSound(Gdx.files.internal("win.ogg"));
+        powerupSound = Gdx.audio.newSound(Gdx.files.internal("powerup.ogg"));
 //
 //        // Load animations
 //
@@ -113,13 +146,13 @@ public class Assets {
 
     }
 
-//    public static void playSound(Sound sound) {
-//        if (Settings.soundEnabled) sound.play(1);
-//    }
+    public static void playSound(Sound sound) {
+        if (Settings.soundEnabled) sound.play(1);
+    }
 
     public static void dispose() {
         itemsAtlas.dispose();
-//        clickSound.dispose();
-//        music.dispose();
+        clickSound.dispose();
+        music.dispose();
     }
 }

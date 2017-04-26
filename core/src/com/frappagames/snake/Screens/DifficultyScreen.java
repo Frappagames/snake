@@ -6,14 +6,17 @@ import com.badlogic.gdx.Screen;
 import com.frappagames.snake.Snake;
 import com.frappagames.snake.Tools.Assets;
 import com.frappagames.snake.Tools.GameScreen;
+import com.frappagames.snake.Tools.Map;
 
 /**
- * Created by gfp on 25/04/17.
+ * Choose a difficulty and a map
  */
 
 class DifficultyScreen extends GameScreen {
     DifficultyScreen(Snake game) {
         super(game);
+
+        Map map = new Map(game);
     }
 
     @Override

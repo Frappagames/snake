@@ -9,30 +9,35 @@ import com.frappagames.snake.Objects.SnakePart;
 import com.frappagames.snake.Snake;
 import com.frappagames.snake.Tools.Assets;
 import com.frappagames.snake.Tools.GameScreen;
+import com.frappagames.snake.Tools.Settings;
 
 /**
- * Created by gfp on 23/03/17.
+ * Snake game play screen
  */
 
-public class PlayScreen extends GameScreen {
+class PlayScreen extends GameScreen {
     private static final int MOVE_SPEED = 100;
     private SnakeBody snake;
     private Apple apple;
     private Snake game;
     private long lastMoveTime;
 
-    public PlayScreen(Snake game) {
+    PlayScreen(Snake game) {
         super(game);
 
         this.game = game;
         this.snake = new SnakeBody(SnakePart.Direction.RIGHT, 10, 10);
         this.apple = new Apple();
         this.lastMoveTime = 0;
+
+        // Play Music ♫
+        if (Settings.soundEnabled) Assets.music.play();
     }
 
     protected void update(float delta) {
         // Check for inputs
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+            Assets.playSound(Assets.clickSound);
             game.setScreen(new MenuScreen(game));
         }
 
@@ -64,6 +69,7 @@ public class PlayScreen extends GameScreen {
 
         // Vérification des colisions avec la pomme
         if (snake.intersect(apple.getX(), apple.getY())) {
+            Assets.playSound(Assets.powerupSound);
             snake.addPart();
 
             do {
@@ -73,6 +79,7 @@ public class PlayScreen extends GameScreen {
 
         // Check colision with himself
         if (snake.eatHimself()) {
+            Assets.playSound(Assets.loseSound);
             game.setScreen(new PlayScreen(game)); // restart
         }
     }
