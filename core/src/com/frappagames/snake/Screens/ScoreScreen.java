@@ -2,18 +2,20 @@ package com.frappagames.snake.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.Screen;
 import com.frappagames.snake.Snake;
 import com.frappagames.snake.Tools.Assets;
 import com.frappagames.snake.Tools.GameScreen;
+import com.frappagames.snake.Tools.Settings;
 
 /**
- * Created by gfp on 25/04/17.
+ * Display best scores by map
  */
 
 class ScoreScreen extends GameScreen {
     ScoreScreen(Snake game) {
         super(game);
+
+        Settings.getScore(1);
     }
 
     @Override
