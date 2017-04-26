@@ -2,7 +2,9 @@ package com.frappagames.snake.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -29,10 +31,12 @@ class PlayScreen extends GameScreen {
     private static final int SPEED_STEP = 60;
     private final Label speedLabel;
     private SnakeBody snake;
+    private Image gameOverImage;
     private Apple apple;
     private Snake game;
     private long lastMoveTime;
     private int currentSpeed, currentMap, currentScore;
+    private boolean isPlaying = true;
 
     @Override
     public void show() {
@@ -40,6 +44,8 @@ class PlayScreen extends GameScreen {
 
         // Play Music ♫
         if (Settings.soundEnabled) Assets.music.play();
+        this.isPlaying = true;
+        gameOverImage.setVisible(false);
     }
 
     PlayScreen(final Snake game, int currentSpeed, int currentMap) {
@@ -85,6 +91,8 @@ class PlayScreen extends GameScreen {
         });
         table.add(menuBtn).row();
 
+        gameOverImage = new Image();
+        table.add(gameOverImage).colspan(3).width(124).height(60).padTop(1).row();
 
         this.lastMoveTime = 0;
     }
@@ -96,49 +104,71 @@ class PlayScreen extends GameScreen {
             game.setScreen(new MenuScreen(game));
         }
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
-            this.snake.turn(SnakePart.Direction.TOP);
-        }
+        if (this.isPlaying) {
+            if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
+                this.snake.turn(SnakePart.Direction.TOP);
+            }
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
-            this.snake.turn(SnakePart.Direction.DOWN);
-        }
+            if (Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
+                this.snake.turn(SnakePart.Direction.DOWN);
+            }
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) {
-            this.snake.turn(SnakePart.Direction.LEFT);
-        }
+            if (Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) {
+                this.snake.turn(SnakePart.Direction.LEFT);
+            }
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
-            this.snake.turn(SnakePart.Direction.RIGHT);
-        }
+            if (Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
+                this.snake.turn(SnakePart.Direction.RIGHT);
+            }
 
-        // Refresh screen
-        if (TimeUtils.millis() > lastMoveTime + (DEFAULT_MOVE_SPEED - (SPEED_STEP * currentSpeed))) {
-            lastMoveTime = TimeUtils.millis();
-            moveSnake();
+            // Refresh screen
+            if (TimeUtils.millis() > lastMoveTime + (DEFAULT_MOVE_SPEED - (SPEED_STEP * currentSpeed))) {
+                lastMoveTime = TimeUtils.millis();
+                moveSnake();
+            }
         }
     }
 
     private void moveSnake() {
         this.snake.move();
 
-        // Vérification des colisions avec la pomme
+        // check collision with apple
         if (snake.intersect(apple.getX(), apple.getY())) {
             Assets.playSound(Assets.powerupSound);
             snake.addPart();
             currentScore += currentSpeed;
             speedLabel.setText(String.format(Locale.FRANCE, "%03d", currentScore));
 
-            do {
-                apple.reset();
-            } while(snake.inSnake(apple.getX(), apple.getY()));
+            // Check if player as win
+            if (snake.getSize() == (Snake.GRID_WIDTH * Snake.GRID_HEIGHT)) {
+                winScreen();
+            } else {
+                // Otherwise continue adding apples
+                do {
+                    apple.reset();
+                } while (snake.inSnake(apple.getX(), apple.getY()));
+            }
         }
 
-        // Check colision with himself
+
+        // Check collision with himself
         if (snake.eatHimself()) {
-            Assets.playSound(Assets.loseSound);
-            game.setScreen(new PlayScreen(game, currentSpeed, currentMap)); // restart
+            gameOverScreen();
         }
+    }
+
+    private void winScreen() {
+        Assets.playSound(Assets.winSound);
+        gameOverImage.setVisible(true);
+        gameOverImage.setDrawable(new TextureRegionDrawable(Assets.imgWin));
+        this.isPlaying = false;
+    }
+
+    private void gameOverScreen() {
+        Assets.playSound(Assets.loseSound);
+        gameOverImage.setVisible(true);
+        gameOverImage.setDrawable(new TextureRegionDrawable(Assets.imgGameOver));
+        this.isPlaying = false;
     }
 
     protected void draw(float delta) {

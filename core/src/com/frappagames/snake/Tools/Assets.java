@@ -20,7 +20,7 @@ public class Assets {
     private static TextureAtlas itemsAtlas;
 
     public static TextureRegion snakePart, apple, snakeHead, snakeTail;
-    public static TextureRegion gameBackground, pageBackground, imgMenu;
+    public static TextureRegion gameBackground, pageBackground, imgMenu, imgWin, imgGameOver;
 
     public static TextureRegion btnStart, btnAbout, btnExit, btnHelp, btnOptions, btnScores,
         btnBack, btnLeft, btnRight, btnOn, btnOff, btnMenu,
@@ -60,6 +60,8 @@ public class Assets {
         gameBackground = new TextureRegion(itemsAtlas.findRegion("gameBackground"));
         pageBackground = new TextureRegion(itemsAtlas.findRegion("pageBackground"));
         imgMenu        = new TextureRegion(itemsAtlas.findRegion("imgMenu"));
+        imgWin         = new TextureRegion(itemsAtlas.findRegion("win"));
+        imgGameOver    = new TextureRegion(itemsAtlas.findRegion("gameOver"));
 
         // Buttons
         btnStart = new TextureRegion(itemsAtlas.findRegion("btnStart"));

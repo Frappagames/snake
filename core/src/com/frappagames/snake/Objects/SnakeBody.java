@@ -109,4 +109,8 @@ public class SnakeBody {
 
         return false;
     }
+
+    public int getSize() {
+        return parts.size();
+    }
 }

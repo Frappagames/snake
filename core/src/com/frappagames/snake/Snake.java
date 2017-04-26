@@ -1,6 +1,5 @@
 /**
  * TODO : * Navigation clavier
- * TODO : * Ecran GameOver
  * TODO : * Ecran Meilleurs scores
  * TODO : * Gestion de MAP
  * TODO : * Gestion des MURS
