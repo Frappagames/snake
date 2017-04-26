@@ -23,9 +23,9 @@ public class Assets {
     public static TextureRegion gameBackground, pageBackground, imgMenu;
 
     public static TextureRegion btnStart, btnAbout, btnExit, btnHelp, btnOptions, btnScores,
-        btnBack, btnLeft, btnRight, btnOn, btnOff,
+        btnBack, btnLeft, btnRight, btnOn, btnOff, btnMenu,
         btnStartOver, btnAboutOver, btnExitOver, btnHelpOver, btnOptionsOver, btnScoresOver,
-        btnBackOver, btnLeftOver, btnRightOver, btnOnOver, btnOffOver;
+        btnBackOver, btnLeftOver, btnRightOver, btnOnOver, btnOffOver, btnMenuOver;
 
     public static TextureRegion titleHelp, titleAbout, titleDifficulty, titleGameOver,
             titleOptions, titleScores;
@@ -73,6 +73,7 @@ public class Assets {
         btnRight = new TextureRegion(itemsAtlas.findRegion("btnRight"));
         btnOn = new TextureRegion(itemsAtlas.findRegion("btnOn"));
         btnOff = new TextureRegion(itemsAtlas.findRegion("btnOff"));
+        btnMenu = new TextureRegion(itemsAtlas.findRegion("btnInGameMenu"));
 
         btnStartOver = new TextureRegion(itemsAtlas.findRegion("btnStartOver"));
         btnAboutOver = new TextureRegion(itemsAtlas.findRegion("btnAboutOver"));
@@ -85,6 +86,7 @@ public class Assets {
         btnRightOver = new TextureRegion(itemsAtlas.findRegion("btnRightOver"));
         btnOnOver = new TextureRegion(itemsAtlas.findRegion("btnOnOver"));
         btnOffOver = new TextureRegion(itemsAtlas.findRegion("btnOffOver"));
+        btnMenuOver = new TextureRegion(itemsAtlas.findRegion("btnInGameMenuOver"));
 
         // Help page
         titleHelp = new TextureRegion(itemsAtlas.findRegion("titleHelp"));

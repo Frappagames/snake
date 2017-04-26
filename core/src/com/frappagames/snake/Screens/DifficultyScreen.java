@@ -20,7 +20,7 @@ import com.frappagames.snake.Tools.Map;
  */
 
 class DifficultyScreen extends GameScreen {
-    private int currentSpeed = 2;
+    private int currentSpeed = 3;
     private Image currentSpeedImage;
     private int currentMap = 1;
     private Image currentMapImage;

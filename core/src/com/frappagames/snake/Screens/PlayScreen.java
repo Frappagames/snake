@@ -2,6 +2,13 @@ package com.frappagames.snake.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.frappagames.snake.Objects.Apple;
 import com.frappagames.snake.Objects.SnakeBody;
@@ -11,18 +18,21 @@ import com.frappagames.snake.Tools.Assets;
 import com.frappagames.snake.Tools.GameScreen;
 import com.frappagames.snake.Tools.Settings;
 
+import java.util.Locale;
+
 /**
  * Snake game play screen
  */
 
 class PlayScreen extends GameScreen {
-    private static final int DEFAULT_MOVE_SPEED = 375;
-    private static final int SPEED_STEP = 50;
+    private static final int DEFAULT_MOVE_SPEED = 380;
+    private static final int SPEED_STEP = 60;
+    private final Label speedLabel;
     private SnakeBody snake;
     private Apple apple;
     private Snake game;
     private long lastMoveTime;
-    private int currentSpeed, currentMap;
+    private int currentSpeed, currentMap, currentScore;
 
     @Override
     public void show() {
@@ -32,7 +42,7 @@ class PlayScreen extends GameScreen {
         if (Settings.soundEnabled) Assets.music.play();
     }
 
-    PlayScreen(Snake game, int currentSpeed, int currentMap) {
+    PlayScreen(final Snake game, int currentSpeed, int currentMap) {
         super(game);
 
         System.out.println(currentSpeed);
@@ -41,8 +51,41 @@ class PlayScreen extends GameScreen {
         this.game = game;
         this.currentSpeed = currentSpeed;
         this.currentMap = currentMap;
+        this.currentScore = 0;
         this.snake = new SnakeBody(SnakePart.Direction.RIGHT, 10, 10);
         this.apple = new Apple();
+
+
+        // Define Page table
+        Table table = new Table();
+        table.setFillParent(true);     // Display on all screen
+        table.align(Align.top);        // Displays UI to the top of the screen
+        table.pad(0, 1, 0, 1);         // Add padding
+        this.stage.addActor(table);    // Add table to stage for display
+
+
+        // Score Label
+        speedLabel = new Label("000", Assets.labelStyleNormal);
+        table.add(speedLabel).align(Align.left);
+
+        // Separator
+        table.add().expandX();
+
+        // Menu Button
+        ImageButton menuBtn = new ImageButton(
+                new TextureRegionDrawable(Assets.btnMenu),
+                new TextureRegionDrawable(Assets.btnMenuOver)
+        );
+        menuBtn.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Assets.playSound(Assets.clickSound);
+                game.setScreen(new MenuScreen(game));
+            }
+        });
+        table.add(menuBtn).row();
+
+
         this.lastMoveTime = 0;
     }
 
@@ -83,6 +126,8 @@ class PlayScreen extends GameScreen {
         if (snake.intersect(apple.getX(), apple.getY())) {
             Assets.playSound(Assets.powerupSound);
             snake.addPart();
+            currentScore += currentSpeed;
+            speedLabel.setText(String.format(Locale.FRANCE, "%03d", currentScore));
 
             do {
                 apple.reset();

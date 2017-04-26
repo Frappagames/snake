@@ -1,10 +1,7 @@
 /**
- * TODO : * Sélection de difficulté
  * TODO : * Navigation clavier
  * TODO : * Ecran GameOver
  * TODO : * Ecran Meilleurs scores
- * TODO : * Affichage des scores in-game
- * TODO : * Lien menu in-game
  * TODO : * Gestion de MAP
  * TODO : * Gestion des MURS
  * TODO : * Gestion des niveaux (par MAP)
