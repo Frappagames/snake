@@ -100,6 +100,9 @@ public class Assets {
         helpImages.add(new TextureRegion(itemsAtlas.findRegion("imgTips5")));
         helpImages.add(new TextureRegion(itemsAtlas.findRegion("imgTips6")));
 
+        // Score Page
+        titleScores = new TextureRegion(itemsAtlas.findRegion("titleScores"));
+
         // About Page
         titleAbout = new TextureRegion(itemsAtlas.findRegion("titleAbout"));
         aboutImages = new ArrayList<TextureRegion>();

@@ -162,6 +162,7 @@ class PlayScreen extends GameScreen {
         gameOverImage.setVisible(true);
         gameOverImage.setDrawable(new TextureRegionDrawable(Assets.imgWin));
         this.isPlaying = false;
+        Settings.setScore(currentMap, currentScore);
     }
 
     private void gameOverScreen() {
@@ -169,6 +170,7 @@ class PlayScreen extends GameScreen {
         gameOverImage.setVisible(true);
         gameOverImage.setDrawable(new TextureRegionDrawable(Assets.imgGameOver));
         this.isPlaying = false;
+        Settings.setScore(currentMap, currentScore);
     }
 
     protected void draw(float delta) {

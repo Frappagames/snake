@@ -1,6 +1,6 @@
 /**
  * TODO : * Navigation clavier
- * TODO : * Ecran Meilleurs scores
+ * TODO : * Contrôle par écran tactile
  * TODO : * Gestion de MAP
  * TODO : * Gestion des MURS
  * TODO : * Gestion des niveaux (par MAP)
