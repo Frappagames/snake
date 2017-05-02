@@ -75,7 +75,7 @@ public class Settings {
             }
         }
 
-        bestScores.set(map, mapScores.toArray());
+        bestScores.set(map - 1, mapScores.toArray());
 
         String jsonString = json.toJson(bestScores.toArray());
         scores = jsonString;

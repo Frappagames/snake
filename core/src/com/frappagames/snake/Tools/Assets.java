@@ -3,6 +3,7 @@ package com.frappagames.snake.Tools;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 public class Assets {
     private static TextureAtlas itemsAtlas;
 
-    public static TextureRegion snakePart, apple, snakeHead, snakeTail;
+    public static TextureRegion snakePart, apple, snakeHead, snakeTail, wall;
     public static TextureRegion gameBackground, pageBackground, imgMenu, imgWin, imgGameOver;
 
     public static TextureRegion btnStart, btnAbout, btnExit, btnHelp, btnOptions, btnScores,
@@ -39,6 +40,8 @@ public class Assets {
     public static Music music;
 
     public static Label.LabelStyle labelStyleNormal, labelStyleBold;
+
+    public static String maps[];
 
     public static void load() {
         // Font
@@ -62,6 +65,7 @@ public class Assets {
         imgMenu        = new TextureRegion(itemsAtlas.findRegion("imgMenu"));
         imgWin         = new TextureRegion(itemsAtlas.findRegion("win"));
         imgGameOver    = new TextureRegion(itemsAtlas.findRegion("gameOver"));
+        wall           = new TextureRegion(itemsAtlas.findRegion("wall"));
 
         // Buttons
         btnStart = new TextureRegion(itemsAtlas.findRegion("btnStart"));
@@ -135,6 +139,11 @@ public class Assets {
         miniMap.add(new TextureRegion(itemsAtlas.findRegion("imgMapLvl7")));
         miniMap.add(new TextureRegion(itemsAtlas.findRegion("imgMapLvl8")));
 
+        // Maps
+        FileHandle mapFile = Gdx.files.internal("maps");
+        String fileContent = mapFile.readString();
+        maps = fileContent.split("\n");
+
         // Load Music and sounds
         music = Gdx.audio.newMusic(Gdx.files.internal("music.ogg"));
         music.setLooping(true);
@@ -144,22 +153,6 @@ public class Assets {
         loseSound = Gdx.audio.newSound(Gdx.files.internal("lose.ogg"));
         winSound = Gdx.audio.newSound(Gdx.files.internal("win.ogg"));
         powerupSound = Gdx.audio.newSound(Gdx.files.internal("powerup.ogg"));
-//
-//        // Load animations
-//
-//        // Stand animation
-//        Texture sheet;
-//        sheet = new Texture(Gdx.files.internal("stand.png"));
-//        TextureRegion[][] tmp = TextureRegion.split(sheet, sheet.getWidth()/4, sheet.getHeight()/2);
-//        TextureRegion[] frames = new TextureRegion[8];
-//        int index = 0;
-//        for (int i = 0; i < 2; i++) {
-//            for (int j = 0; j < 4; j++) {
-//                frames[index++] = tmp[i][j];
-//            }
-//        }
-//        standAnimation = new Animation(0.15f, frames);
-
     }
 
     public static void playSound(Sound sound) {

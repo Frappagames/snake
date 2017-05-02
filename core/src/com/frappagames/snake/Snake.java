@@ -1,9 +1,6 @@
 /**
  * TODO : * Navigation clavier
  * TODO : * Contrôle par écran tactile
- * TODO : * Gestion de MAP
- * TODO : * Gestion des MURS
- * TODO : * Gestion des niveaux (par MAP)
  */
 
 package com.frappagames.snake;

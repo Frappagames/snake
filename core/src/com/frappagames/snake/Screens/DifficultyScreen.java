@@ -13,7 +13,6 @@ import com.badlogic.gdx.utils.Align;
 import com.frappagames.snake.Snake;
 import com.frappagames.snake.Tools.Assets;
 import com.frappagames.snake.Tools.GameScreen;
-import com.frappagames.snake.Tools.Map;
 
 /**
  * Choose a difficulty and a map

@@ -1,35 +1,49 @@
 package com.frappagames.snake.Tools;
 
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.math.Vector2;
 import com.frappagames.snake.Snake;
 
 /**
- * Created by gfp on 25/04/17.
+ * Game map class
  */
 
 public class Map {
-    private Snake game;
-    private boolean[] map;
-    private TextureRegion miniMap;
+    private char[] map;
+    private int wallCount;
 
-    public Map(Snake game) {
-        this.game = game;
-        map = new boolean[180];
-        miniMap = Assets.miniMap.get(0);
+    public Map(int mapNumber) {
+        this.map = Assets.maps[mapNumber - 1].toCharArray();
+        this.wallCount = 0;
 
-        map[0] = true;
-
-        for (int i = 0; i < 180; i++) {
-            if (i % 20 == 0) {
-                System.out.println();
-            }
-
-            if (map[i]) {
-                System.out.print("#");
-            } else {
-                System.out.print(" ");
+        // Count walls
+        for (char c : map) {
+            if (c == '1') {
+                this.wallCount++;
             }
         }
     }
 
+    public boolean collideWall(Vector2 position) {
+        int offset = Math.round(position.y * 20 + position.x);
+
+        return (map[offset] == '1');
+    }
+
+    public void draw(Batch batch) {
+        int i = 0;
+        for (char c : map) {
+            if (c == '1') {
+                int x = (i % 20) * Snake.TILE_SIZE + Snake.DRAW_OFFSET;
+                int y = ((int) Math.ceil(i / 20)) * Snake.TILE_SIZE + Snake.DRAW_OFFSET;
+                batch.draw(Assets.wall, x, y);
+            }
+
+            i++;
+        }
+    }
+
+    public int getWallCount() {
+        return wallCount;
+    }
 }

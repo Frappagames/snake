@@ -1,6 +1,7 @@
 package com.frappagames.snake.Objects;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
 
@@ -108,6 +109,12 @@ public class SnakeBody {
         }
 
         return false;
+    }
+
+    public Vector2 getHeadPosition() {
+        SnakePart firstPart = parts.get(0);
+
+        return new Vector2(firstPart.getX(), firstPart.getY());
     }
 
     public int getSize() {

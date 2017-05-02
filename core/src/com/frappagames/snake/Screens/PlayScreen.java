@@ -2,7 +2,7 @@ package com.frappagames.snake.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -18,6 +18,7 @@ import com.frappagames.snake.Objects.SnakePart;
 import com.frappagames.snake.Snake;
 import com.frappagames.snake.Tools.Assets;
 import com.frappagames.snake.Tools.GameScreen;
+import com.frappagames.snake.Tools.Map;
 import com.frappagames.snake.Tools.Settings;
 
 import java.util.Locale;
@@ -37,6 +38,9 @@ class PlayScreen extends GameScreen {
     private long lastMoveTime;
     private int currentSpeed, currentMap, currentScore;
     private boolean isPlaying = true;
+    private Map map;
+    private int areaSize = 0;
+
 
     @Override
     public void show() {
@@ -51,16 +55,14 @@ class PlayScreen extends GameScreen {
     PlayScreen(final Snake game, int currentSpeed, int currentMap) {
         super(game);
 
-        System.out.println(currentSpeed);
-        System.out.println(currentMap);
-
         this.game = game;
         this.currentSpeed = currentSpeed;
         this.currentMap = currentMap;
         this.currentScore = 0;
         this.snake = new SnakeBody(SnakePart.Direction.RIGHT, 10, 10);
         this.apple = new Apple();
-
+        this.map = new Map(currentMap);
+        this.areaSize = (Snake.GRID_WIDTH * Snake.GRID_HEIGHT) - this.map.getWallCount();
 
         // Define Page table
         Table table = new Table();
@@ -95,6 +97,11 @@ class PlayScreen extends GameScreen {
         table.add(gameOverImage).colspan(3).width(124).height(60).padTop(1).row();
 
         this.lastMoveTime = 0;
+
+        do {
+            apple.reset();
+        } while (snake.inSnake(apple.getX(), apple.getY())
+                || map.collideWall(new Vector2(apple.getX(), apple.getY())));
     }
 
     protected void update(float delta) {
@@ -140,19 +147,24 @@ class PlayScreen extends GameScreen {
             speedLabel.setText(String.format(Locale.FRANCE, "%03d", currentScore));
 
             // Check if player as win
-            if (snake.getSize() == (Snake.GRID_WIDTH * Snake.GRID_HEIGHT)) {
+            if (snake.getSize() == this.areaSize) {
                 winScreen();
             } else {
                 // Otherwise continue adding apples
                 do {
                     apple.reset();
-                } while (snake.inSnake(apple.getX(), apple.getY()));
+                } while (snake.inSnake(apple.getX(), apple.getY())
+                            || map.collideWall(new Vector2(apple.getX(), apple.getY())));
             }
         }
 
-
         // Check collision with himself
         if (snake.eatHimself()) {
+            gameOverScreen();
+        }
+
+        // Check collision with walls
+        if (map.collideWall(snake.getHeadPosition())) {
             gameOverScreen();
         }
     }
@@ -176,6 +188,7 @@ class PlayScreen extends GameScreen {
     protected void draw(float delta) {
         game.batch.begin();
         game.batch.draw(Assets.gameBackground, 0, 0);
+        this.map.draw(game.batch);
         this.snake.draw(game.batch);
         this.apple.draw(game.batch);
         game.batch.end();
