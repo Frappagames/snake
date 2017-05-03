@@ -23,9 +23,13 @@ class DifficultyScreen extends GameScreen {
     private Image currentSpeedImage;
     private int currentMap = 1;
     private Image currentMapImage;
+    private int currentOption;
+    private ImageButton decreaseSpeedBtn, increaseSpeedBtn, decreaseMapBtn, increaseMapBtn, backBtn, startBtn;
 
     DifficultyScreen(final Snake game) {
         super(game);
+
+        this.currentOption = 1;
 
         // Define Page table
         Table table = new Table();
@@ -44,8 +48,9 @@ class DifficultyScreen extends GameScreen {
         table.add().expandX();
 
         // Decrease currentSpeed button
-        ImageButton decreaseSpeedBtn = new ImageButton(
+        decreaseSpeedBtn = new ImageButton(
                 new TextureRegionDrawable(Assets.btnLeft),
+                new TextureRegionDrawable(Assets.btnLeftOver),
                 new TextureRegionDrawable(Assets.btnLeftOver)
         );
         decreaseSpeedBtn.addListener(new ClickListener() {
@@ -64,8 +69,9 @@ class DifficultyScreen extends GameScreen {
         table.add(currentSpeedImage).width(44).height(8).pad(2, 0, 2, 0);
 
         // Increase currentSpeed button
-        ImageButton increaseSpeedBtn = new ImageButton(
+        increaseSpeedBtn = new ImageButton(
                 new TextureRegionDrawable(Assets.btnRight),
+                new TextureRegionDrawable(Assets.btnRightOver),
                 new TextureRegionDrawable(Assets.btnRightOver)
         );
         increaseSpeedBtn.addListener(new ClickListener() {
@@ -88,8 +94,9 @@ class DifficultyScreen extends GameScreen {
         table.add().expandX();
 
         // Decrease currentMap button
-        ImageButton decreaseMapBtn = new ImageButton(
+        decreaseMapBtn = new ImageButton(
                 new TextureRegionDrawable(Assets.btnLeft),
+                new TextureRegionDrawable(Assets.btnLeftOver),
                 new TextureRegionDrawable(Assets.btnLeftOver)
         );
         decreaseMapBtn.addListener(new ClickListener() {
@@ -109,8 +116,9 @@ class DifficultyScreen extends GameScreen {
         table.add(currentMapImage).width(44).height(22).pad(2, 0, 2, 0);
 
         // Increase currentMap button
-        ImageButton increaseMapBtn = new ImageButton(
+        increaseMapBtn = new ImageButton(
                 new TextureRegionDrawable(Assets.btnRight),
+                new TextureRegionDrawable(Assets.btnRightOver),
                 new TextureRegionDrawable(Assets.btnRightOver)
         );
         increaseMapBtn.addListener(new ClickListener() {
@@ -130,7 +138,7 @@ class DifficultyScreen extends GameScreen {
         table.add().colspan(5).expand().row();
 
         // Back and start buttons : back to menu or launch the game
-        ImageButton backBtn = new ImageButton(
+        backBtn = new ImageButton(
                 new TextureRegionDrawable(Assets.btnBack),
                 new TextureRegionDrawable(Assets.btnBackOver),
                 new TextureRegionDrawable(Assets.btnBackOver)
@@ -143,7 +151,7 @@ class DifficultyScreen extends GameScreen {
             }
         });
 
-        ImageButton startBtn = new ImageButton(
+        startBtn = new ImageButton(
                 new TextureRegionDrawable(Assets.btnStart),
                 new TextureRegionDrawable(Assets.btnStartOver),
                 new TextureRegionDrawable(Assets.btnStartOver)
@@ -158,6 +166,8 @@ class DifficultyScreen extends GameScreen {
         table.add(backBtn);
         table.add().expandX();
         table.add(startBtn).colspan(3).row();
+
+        checkButton();
     }
 
     @Override
@@ -169,11 +179,70 @@ class DifficultyScreen extends GameScreen {
 
         // Check for inputs
         if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
-            game.setScreen(new PlayScreen(game, currentSpeed, currentMap));
+            if (currentOption == 4) {
+                game.setScreen(new PlayScreen(game, currentSpeed, currentMap));
+            }
+
+            if (currentOption == 3) {
+                game.setScreen(new MenuScreen(game));
+            }
+        }
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.UP) && currentOption > 1) {
+            Assets.playSound(Assets.clickSound);
+            currentOption--;
+            checkButton();
+        }
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.DOWN) && currentOption < 4) {
+            Assets.playSound(Assets.clickSound);
+            currentOption++;
+            checkButton();
+        }
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) {
+            if (currentOption == 1 && currentSpeed > 1) {
+                Assets.playSound(Assets.clickSound);
+                currentSpeed--;
+            }
+            if (currentOption == 2 && currentMap > 1) {
+                Assets.playSound(Assets.clickSound);
+                currentMap--;
+            }
+            if (currentOption == 4) {
+                Assets.playSound(Assets.clickSound);
+                currentOption--;
+                checkButton();
+            }
+        }
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
+            if (currentOption == 1 && currentSpeed < 5) {
+                Assets.playSound(Assets.clickSound);
+                currentSpeed++;
+            }
+            if (currentOption == 2 && currentMap < 8) {
+                Assets.playSound(Assets.clickSound);
+                currentMap++;
+            }
+            if (currentOption == 3) {
+                Assets.playSound(Assets.clickSound);
+                currentOption++;
+                checkButton();
+            }
         }
 
         currentSpeedImage.setDrawable(new TextureRegionDrawable(Assets.speedImages.get(currentSpeed - 1)));
         currentMapImage.setDrawable(new TextureRegionDrawable(Assets.miniMap.get(currentMap - 1)));
+    }
+
+    private void checkButton() {
+        decreaseSpeedBtn.setChecked(currentOption == 1);
+        increaseSpeedBtn.setChecked(currentOption == 1);
+        decreaseMapBtn.setChecked(currentOption == 2);
+        increaseMapBtn.setChecked(currentOption == 2);
+        backBtn.setChecked(currentOption == 3);
+        startBtn.setChecked(currentOption == 4);
     }
 
     @Override

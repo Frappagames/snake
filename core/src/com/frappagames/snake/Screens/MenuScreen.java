@@ -13,27 +13,29 @@ import com.frappagames.snake.Tools.Assets;
 import com.frappagames.snake.Tools.GameScreen;
 
 /**
- * Created by gfp on 24/04/17.
+ * Menu Screen
  */
 
 public class MenuScreen extends GameScreen {
     private Snake game;
-    protected Table table;
+    private int currentOption;
+    private ImageButton startBtn, scoresBtn, optionsBtn, helpBtn, aboutBtn, exitBtn;
 
     public MenuScreen(final Snake game) {
         super(game);
 
         this.game = game;
+        this.currentOption = 1;
 
         // Define Menu table
-        this.table = new Table();
-        this.table.setFillParent(true);     // Display on all screen
-        this.table.align(Align.right);      // Align menu to right
-        this.table.pad(Snake.DRAW_OFFSET);  // Add padding
+        Table table = new Table();
+        table.setFillParent(true);     // Display on all screen
+        table.align(Align.right);      // Align menu to right
+        table.pad(Snake.DRAW_OFFSET);  // Add padding
         this.stage.addActor(table);         // Add table to stage for display
 
         // Start button : Launch "select difficulty" screen to start a new game
-        ImageButton startBtn = new ImageButton(
+        startBtn = new ImageButton(
                 new TextureRegionDrawable(Assets.btnStart),
                 new TextureRegionDrawable(Assets.btnStartOver),
                 new TextureRegionDrawable(Assets.btnStartOver)
@@ -45,10 +47,10 @@ public class MenuScreen extends GameScreen {
                 game.setScreen(new DifficultyScreen(game));
             }
         });
-        this.table.add(startBtn).pad(1, 0, 0, 0).row();
+        table.add(startBtn).pad(1, 0, 0, 0).row();
 
         // Score button : Display scores screen
-        ImageButton scoresBtn = new ImageButton(
+        scoresBtn = new ImageButton(
                 new TextureRegionDrawable(Assets.btnScores),
                 new TextureRegionDrawable(Assets.btnScoresOver),
                 new TextureRegionDrawable(Assets.btnScoresOver)
@@ -60,10 +62,10 @@ public class MenuScreen extends GameScreen {
                 game.setScreen(new ScoreScreen(game));
             }
         });
-        this.table.add(scoresBtn).pad(1, 0, 0, 0).row();
+        table.add(scoresBtn).pad(1, 0, 0, 0).row();
 
         // Option button : Display options screen (for enable or disable sounds)
-        ImageButton optionsBtn = new ImageButton(
+        optionsBtn = new ImageButton(
                 new TextureRegionDrawable(Assets.btnOptions),
                 new TextureRegionDrawable(Assets.btnOptionsOver),
                 new TextureRegionDrawable(Assets.btnOptionsOver)
@@ -75,10 +77,10 @@ public class MenuScreen extends GameScreen {
                 game.setScreen(new OptionsScreen(game));
             }
         });
-        this.table.add(optionsBtn).pad(1, 0, 0, 0).row();
+        table.add(optionsBtn).pad(1, 0, 0, 0).row();
 
         // Help button : Display help screens (explain game rules)
-        ImageButton helpBtn = new ImageButton(
+        helpBtn = new ImageButton(
                 new TextureRegionDrawable(Assets.btnHelp),
                 new TextureRegionDrawable(Assets.btnHelpOver),
                 new TextureRegionDrawable(Assets.btnHelpOver)
@@ -90,10 +92,10 @@ public class MenuScreen extends GameScreen {
                 game.setScreen(new HelpScreen(game));
             }
         });
-        this.table.add(helpBtn).pad(1, 0, 0, 0).row();
+        table.add(helpBtn).pad(1, 0, 0, 0).row();
 
         // About button : Display about screens to show credits
-        ImageButton aboutBtn = new ImageButton(
+        aboutBtn = new ImageButton(
                 new TextureRegionDrawable(Assets.btnAbout),
                 new TextureRegionDrawable(Assets.btnAboutOver),
                 new TextureRegionDrawable(Assets.btnAboutOver)
@@ -105,10 +107,10 @@ public class MenuScreen extends GameScreen {
                 game.setScreen(new AboutScreen(game));
             }
         });
-        this.table.add(aboutBtn).pad(1, 0, 0, 0).row();
+        table.add(aboutBtn).pad(1, 0, 0, 0).row();
 
         // Exit button : Quit the game
-        ImageButton exitBtn = new ImageButton(
+        exitBtn = new ImageButton(
                 new TextureRegionDrawable(Assets.btnExit),
                 new TextureRegionDrawable(Assets.btnExitOver),
                 new TextureRegionDrawable(Assets.btnExitOver)
@@ -120,8 +122,9 @@ public class MenuScreen extends GameScreen {
                 Gdx.app.exit();
             }
         });
-        this.table.add(exitBtn).pad(2, 0, 2, 0).row();
+        table.add(exitBtn).pad(2, 0, 2, 0).row();
 
+        checkButton();
     }
 
     @Override
@@ -132,11 +135,39 @@ public class MenuScreen extends GameScreen {
             Gdx.app.exit();
         }
 
-        // Check for inputs
+        if (Gdx.input.isKeyJustPressed(Input.Keys.UP) && currentOption > 1) {
+            Assets.playSound(Assets.clickSound);
+            currentOption--;
+            checkButton();
+        }
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.DOWN) && currentOption < 6) {
+            Assets.playSound(Assets.clickSound);
+            currentOption++;
+            checkButton();
+        }
+
+
         if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
             Assets.playSound(Assets.clickSound);
-            game.setScreen(new DifficultyScreen(game));
+            switch (currentOption) {
+                case 1: game.setScreen(new DifficultyScreen(game)); break;
+                case 2: game.setScreen(new ScoreScreen(game));      break;
+                case 3: game.setScreen(new OptionsScreen(game));    break;
+                case 4: game.setScreen(new HelpScreen(game));       break;
+                case 5: game.setScreen(new AboutScreen(game));      break;
+                case 6: Gdx.app.exit();                             break;
+            }
         }
+    }
+
+    private void checkButton() {
+        startBtn.setChecked(currentOption == 1);
+        scoresBtn.setChecked(currentOption == 2);
+        optionsBtn.setChecked(currentOption == 3);
+        helpBtn.setChecked(currentOption == 4);
+        aboutBtn.setChecked(currentOption == 5);
+        exitBtn.setChecked(currentOption == 6);
     }
 
     @Override
