@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 
 public class SnakeBody {
-    private static final int START_LENGHT = 5;
+    private static final int START_LENGHT = 3;
     private ArrayList<SnakePart> parts = new ArrayList<SnakePart>();
     private boolean asTurned = false;
 

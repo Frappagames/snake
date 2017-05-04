@@ -1,5 +1,4 @@
 /**
- * TODO : * Correction de la position du serpent au démarrage selon la MAP
  * TODO : * Contrôle par écran tactile
  */
 

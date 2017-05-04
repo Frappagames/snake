@@ -58,10 +58,10 @@ class PlayScreen extends GameScreen {
         this.game = game;
         this.currentSpeed = currentSpeed;
         this.currentMap = currentMap;
-        this.currentScore = 0;
-        this.snake = new SnakeBody(SnakePart.Direction.RIGHT, 10, 10);
-        this.apple = new Apple();
         this.map = new Map(currentMap);
+        this.currentScore = 0;
+        this.snake = new SnakeBody(SnakePart.Direction.RIGHT, map.getSnakeStartX(), map.getSnakeStartY());
+        this.apple = new Apple();
         this.areaSize = (Snake.GRID_WIDTH * Snake.GRID_HEIGHT) - this.map.getWallCount();
 
         // Define Page table
