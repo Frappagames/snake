@@ -2,6 +2,8 @@ package com.frappagames.snake.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -17,6 +19,8 @@ import com.frappagames.snake.Objects.SnakeBody;
 import com.frappagames.snake.Objects.SnakePart;
 import com.frappagames.snake.Snake;
 import com.frappagames.snake.Tools.Assets;
+import com.frappagames.snake.Tools.GameGestureListener;
+import com.frappagames.snake.Tools.GameInputProcessor;
 import com.frappagames.snake.Tools.GameScreen;
 import com.frappagames.snake.Tools.Map;
 import com.frappagames.snake.Tools.Settings;
@@ -27,7 +31,7 @@ import java.util.Locale;
  * Snake game play screen
  */
 
-class PlayScreen extends GameScreen {
+public class PlayScreen extends GameScreen {
     private static final int DEFAULT_MOVE_SPEED = 380;
     private static final int SPEED_STEP = 60;
     private final Label speedLabel;
@@ -52,7 +56,7 @@ class PlayScreen extends GameScreen {
         gameOverImage.setVisible(false);
     }
 
-    PlayScreen(final Snake game, int currentSpeed, int currentMap) {
+    public PlayScreen(final Snake game, int currentSpeed, int currentMap) {
         super(game);
 
         this.game = game;
@@ -102,6 +106,14 @@ class PlayScreen extends GameScreen {
             apple.reset();
         } while (snake.inSnake(apple.getX(), apple.getY())
                 || map.collideWall(new Vector2(apple.getX(), apple.getY())));
+
+
+        // Define input and gesture processors
+        InputMultiplexer inputMultiplexer = new InputMultiplexer();
+        inputMultiplexer.addProcessor(stage);
+        inputMultiplexer.addProcessor(new GestureDetector(new GameGestureListener(this)));
+        inputMultiplexer.addProcessor(new GameInputProcessor(this));
+        Gdx.input.setInputProcessor(inputMultiplexer);
     }
 
     protected void update(float delta) {
@@ -112,27 +124,28 @@ class PlayScreen extends GameScreen {
         }
 
         if (this.isPlaying) {
-            if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
-                this.snake.turn(SnakePart.Direction.TOP);
-            }
-
-            if (Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
-                this.snake.turn(SnakePart.Direction.DOWN);
-            }
-
-            if (Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) {
-                this.snake.turn(SnakePart.Direction.LEFT);
-            }
-
-            if (Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
-                this.snake.turn(SnakePart.Direction.RIGHT);
-            }
-
             // Refresh screen
             if (TimeUtils.millis() > lastMoveTime + (DEFAULT_MOVE_SPEED - (SPEED_STEP * currentSpeed))) {
                 lastMoveTime = TimeUtils.millis();
                 moveSnake();
             }
+        }
+    }
+
+    public void move(Snake.Direction direction) {
+        switch (direction) {
+            case UP:
+                this.snake.turn(SnakePart.Direction.TOP);
+                break;
+            case DOWN:
+                this.snake.turn(SnakePart.Direction.DOWN);
+                break;
+            case LEFT:
+                this.snake.turn(SnakePart.Direction.LEFT);
+                break;
+            case RIGHT:
+                this.snake.turn(SnakePart.Direction.RIGHT);
+                break;
         }
     }
 
@@ -178,6 +191,7 @@ class PlayScreen extends GameScreen {
     }
 
     private void gameOverScreen() {
+        Assets.music.stop();
         Assets.playSound(Assets.loseSound);
         gameOverImage.setVisible(true);
         gameOverImage.setDrawable(new TextureRegionDrawable(Assets.imgGameOver));

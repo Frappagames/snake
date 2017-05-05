@@ -1,7 +1,3 @@
-/**
- * TODO : * Contrôle par écran tactile
- */
-
 package com.frappagames.snake;
 
 import com.badlogic.gdx.Game;
@@ -20,6 +16,10 @@ public class Snake extends Game {
 	public static final int    HEIGHT = 72;
 	public static final float  PAGE_TRANSITION = 0.4f;
 	public SpriteBatch batch;
+
+	public enum Direction {
+		LEFT, RIGHT, UP, DOWN
+	}
 	
 	@Override
 	public void create () {
@@ -36,5 +36,6 @@ public class Snake extends Game {
 	@Override
 	public void dispose () {
 		batch.dispose();
+        Assets.dispose();
 	}
 }
