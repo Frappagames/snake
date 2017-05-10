@@ -25,7 +25,7 @@ Développé en JAVA avec LibGDX, il a pour plateformes cibles :
   
 ## Aperçu :
 
-![Aperçu](https://raw.githubusercontent.com/Frappagames/snake/master/design_sources/preview.jpg)
+![Aperçu](https://raw.githubusercontent.com/Frappagames/snake/master/design_resources/preview.jpg)
   
   
 ## Crédits :
