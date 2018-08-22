@@ -37,7 +37,7 @@ class ScoreScreen extends GameScreen {
 
         // Display page title
         Image titleImg = new Image(Assets.titleScores);
-        table.add(titleImg).colspan(5).row();
+        table.add(titleImg).colspan(5).pad(2).row();
 
 
         // Select Map
@@ -76,7 +76,7 @@ class ScoreScreen extends GameScreen {
 
         // Scores
         VerticalGroup scoreGroup = new VerticalGroup();
-        scoreGroup.space(0);
+        scoreGroup.space(1);
         scoreGroup.align(Align.left);
         score1 = new Label("1-8888", Assets.labelStyleNormal);
         scoreGroup.addActor(score1);
@@ -136,7 +136,7 @@ class ScoreScreen extends GameScreen {
 
     private void decreaseMap() {
         currentMap--;
-        if (currentMap <= 1) {
+        if (currentMap <= 0) {
             currentMap = Assets.miniMap.size();
         }
         Assets.playSound(Assets.clickSound);
