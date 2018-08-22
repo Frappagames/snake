@@ -102,11 +102,7 @@ class DifficultyScreen extends GameScreen {
         decreaseMapBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                currentMap--;
-                if (currentMap <= 1) {
-                    currentMap = Assets.miniMap.size();
-                }
-                Assets.playSound(Assets.clickSound);
+                decreaseMap();
             }
         });
         table.add(decreaseMapBtn).pad(2, 0, 2, 0);
@@ -124,11 +120,7 @@ class DifficultyScreen extends GameScreen {
         increaseMapBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                currentMap++;
-                if (currentMap > Assets.miniMap.size()) {
-                    currentMap = 1;
-                }
-                Assets.playSound(Assets.clickSound);
+                increaseMap();
             }
         });
         table.add(increaseMapBtn).pad(2, 0, 2, 0);
@@ -205,9 +197,8 @@ class DifficultyScreen extends GameScreen {
                 Assets.playSound(Assets.clickSound);
                 currentSpeed--;
             }
-            if (currentOption == 2 && currentMap > 1) {
-                Assets.playSound(Assets.clickSound);
-                currentMap--;
+            if (currentOption == 2) {
+                decreaseMap();
             }
             if (currentOption == 4) {
                 Assets.playSound(Assets.clickSound);
@@ -221,9 +212,8 @@ class DifficultyScreen extends GameScreen {
                 Assets.playSound(Assets.clickSound);
                 currentSpeed++;
             }
-            if (currentOption == 2 && currentMap < 8) {
-                Assets.playSound(Assets.clickSound);
-                currentMap++;
+            if (currentOption == 2) {
+                increaseMap();
             }
             if (currentOption == 3) {
                 Assets.playSound(Assets.clickSound);
@@ -234,6 +224,26 @@ class DifficultyScreen extends GameScreen {
 
         currentSpeedImage.setDrawable(new TextureRegionDrawable(Assets.speedImages.get(currentSpeed - 1)));
         currentMapImage.setDrawable(new TextureRegionDrawable(Assets.miniMap.get(currentMap - 1)));
+    }
+
+    private void increaseMap() {
+        currentMap++;
+
+        if (currentMap > Assets.miniMap.size()) {
+            currentMap = 1;
+        }
+
+        Assets.playSound(Assets.clickSound);
+    }
+
+    private void decreaseMap() {
+        currentMap--;
+
+        if (currentMap <= 0) {
+            currentMap = Assets.miniMap.size();
+        }
+
+        Assets.playSound(Assets.clickSound);
     }
 
     private void checkButton() {
