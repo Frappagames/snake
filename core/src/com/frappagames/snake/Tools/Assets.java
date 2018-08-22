@@ -45,9 +45,9 @@ public class Assets {
 
     public static void load() {
         // Font
-        BitmapFont fontNormal = new BitmapFont(Gdx.files.internal("fontNormal.fnt"), false);
+        BitmapFont fontNormal = new BitmapFont(Gdx.files.internal("font-normal.fnt"), false);
         labelStyleNormal      = new Label.LabelStyle(fontNormal, Color.WHITE);
-        BitmapFont fontBold   = new BitmapFont(Gdx.files.internal("fontBold.fnt"), false);
+        BitmapFont fontBold   = new BitmapFont(Gdx.files.internal("font-bold.fnt"), false);
         labelStyleBold        = new Label.LabelStyle(fontBold, Color.WHITE);
 
         // Load Textures

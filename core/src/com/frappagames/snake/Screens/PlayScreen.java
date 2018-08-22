@@ -34,7 +34,7 @@ import java.util.Locale;
 public class PlayScreen extends GameScreen {
     private static final int DEFAULT_MOVE_SPEED = 380;
     private static final int SPEED_STEP = 60;
-    private final Label speedLabel;
+    private final Label scoreLabel;
     private SnakeBody snake;
     private Image gameOverImage;
     private Apple apple;
@@ -77,8 +77,8 @@ public class PlayScreen extends GameScreen {
 
 
         // Score Label
-        speedLabel = new Label("000", Assets.labelStyleNormal);
-        table.add(speedLabel).align(Align.left);
+        scoreLabel = new Label("000", Assets.labelStyleNormal);
+        table.add(scoreLabel).align(Align.left);
 
         // Separator
         table.add().expandX();
@@ -157,7 +157,12 @@ public class PlayScreen extends GameScreen {
             Assets.playSound(Assets.powerupSound);
             snake.addPart();
             currentScore += currentSpeed;
-            speedLabel.setText(String.format(Locale.FRANCE, "%03d", currentScore));
+
+            String scoreLabelText = String.valueOf(currentScore);
+            while (scoreLabelText.length() < 3) {
+                scoreLabelText = "0" + scoreLabelText;
+            }
+            scoreLabel.setText(scoreLabelText);
 
             // Check if player as win
             if (snake.getSize() == this.areaSize) {
